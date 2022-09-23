@@ -1,3 +1,5 @@
-# MATH 4610
+# MATH 4610 - Fundamentals of Numerical Analysis
 
-## Fundamentals of Numerical Analysis - Code Bank
+## Table of Contents
+
+### [Root Finding](./root-finding)
