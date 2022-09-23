@@ -3,7 +3,7 @@
 ## Table of Contents
 
 ### Root Finding
-- [Functional Iteration](./src/root-finding/functional-iteration.py)
-- [Bisection](./src/root-finding/bisection.py)
-- [Newton's](./src/root-finding/newton.py)
-- [Secant](./src/root-finding/secant.py)
+- [Functional Iteration](./docs/root-finding/functional-iteration.md)
+- [Bisection](./docs/root-finding/bisection.md)
+- [Newton's](./docs/root-finding/newton.md)
+- [Secant](./docs/root-finding/secant.md)
