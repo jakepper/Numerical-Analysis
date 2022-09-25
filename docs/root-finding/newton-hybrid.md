@@ -27,8 +27,10 @@ This is done using a Newton and bisection hybrid method for root finding.
 Pre-determined Inputs
 - $ f(x) $
 - $ f'(x) $
+- $ g(x) $ : Newton's approximation function
 - Tolerance : upper bound for the error in the approximation
 - Max Iterations : maximum allowed iterations before program terminates
+- Intervals of which will be tested
 
 Calculated Inputs
 - $x_0$ : initial approximation

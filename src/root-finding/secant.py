@@ -11,7 +11,7 @@ def g(x0, x1):
     fx1 = f(x1)
     return x1 - ((x0 - x1) / (f(x0) - fx1)) * fx1
 
-def iterate(x0, x1, g):
+def iterate(x0, x1):
     data = {
         'root': None,
         'iterations': []
@@ -45,7 +45,7 @@ if len(sys.argv) > 1:
 # Output - Task 2
 x0 = float(input('Lower Bound (x0): '))
 x1 = float(input('Upper Bound (x1): '))
-data = iterate(x0, x1, g)
+data = iterate(x0, x1)
 
 root_check(data['root'])
 print('\n\tApproximate Root: {:f}'.format(data['root']))

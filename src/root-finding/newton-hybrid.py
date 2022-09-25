@@ -23,7 +23,7 @@ def bisect(a, b, iterations, data):
             fm = f(m)
             error = np.abs(fm)
             data['iterations'].append('   {:^18d}{:^18.4e}{:^18e}{:^18s}'.format(i + 1, m, error, 'bisection'))
-            if np.abs(fm) < TOLERANCE:
+            if error < TOLERANCE:
                 data['root'] = m
                 break
             elif fa * fm < 0:

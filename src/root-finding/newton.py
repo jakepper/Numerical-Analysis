@@ -13,7 +13,7 @@ def f_prime(x):
 def g(x):
     return x - (f(x) / f_prime(x))
 
-def iterate(x0, g):
+def iterate(x0):
     data = {
         'root': None,
         'iterations': []
@@ -45,7 +45,7 @@ if len(sys.argv) > 1:
 
 # Output - Task 1
 x0 = float(input('Enter x0: '))
-data = iterate(x0, g)
+data = iterate(x0)
 
 root_check(data['root'])
 print('\n\tApproximate Root: {:f}'.format(data['root']))
