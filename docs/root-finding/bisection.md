@@ -1,4 +1,4 @@
-# Bisection Method
+# Bisection
 
 **Routine Name:** bisection
 

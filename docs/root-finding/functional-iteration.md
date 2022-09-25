@@ -1,4 +1,4 @@
-# Functional Iteration Method
+# Functional Iteration
 
 **Routine Name:** functional-iteration
 
