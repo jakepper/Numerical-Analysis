@@ -1,29 +1,28 @@
-#include <stdio.h>;
-#include <math.h>;
+#include <stdio.h>
+#include <math.h>
 
-double bisect(double, double, double (*f)(double x), float, int);
+#include "functions.h"
 
-double bisect(double a, double b, double (*f)(double x), float tol, int iters) {
-    double root;
-    int i = 0;
-    while (i < iters) {
+double bisect(double a, double b, double (*f)(double x), int iters, double results[]) {
+    double m;
+    for (int i = 0; i <= iters; i++) {
         double fa = f(a);
         double fb = f(b);
         if (a < b && fa * fb < 0) {
-            double m = (a + b) / 2;
-            double fm = f(m);
-            if (fabs(fm) < tol) {
-                root = m;
-            }
-            else if (fa * fm < 0) {
+            m = (a + b) / 2;
+            if (fa * f(m) < 0) {
                 b = m;
             }
             else {
                 a = m;
             }
         }
-        i++;
     }
 
-    return root;
+    /* resulting bounds */
+    results[0] = a;
+    results[1] = b;
+
+    /* approximate root */
+    return m;
 }
