@@ -14,7 +14,7 @@ or with the argument `-v` for tabular results
 
     python bisection.py -v
 
-from the `src/root-finding/` directory.
+from the `src/root-finding/Python` directory.
 
 **Description/Purpose:** This routine will compute an approximation of the root of the following two functions,
 
@@ -63,4 +63,4 @@ Iterations: 37
 Approximate root: 2.000000
 ```
 
-**Implementation/Code:** [bisection.py](../../src/root-finding/bisection.py)
+**Implementation/Code:** [bisection.py](../../src/root-finding/Python/bisection.py)

@@ -14,7 +14,7 @@ or with the argument `-v` for tabular results
 
     python secant.py -v
 
-from the `src/root-finding/` directory.
+from the `src/root-finding/Python` directory.
 
 **Description/Purpose:** This routine will compute an approximation of the root of the following function,
 
@@ -59,4 +59,4 @@ Upper Bound (x1): 0.6
            7             6.5198e-06       6.519788e-06
 ```
 
-**Implementation/Code:** [secant.py](../../src/root-finding/secant.py)
+**Implementation/Code:** [secant.py](../../src/root-finding/Python/secant.py)

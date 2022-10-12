@@ -14,7 +14,7 @@ or with the argument `-v` for tabular results
 
     python newton-hybrid.py -v
 
-from the `src/root-finding/` directory.
+from the `src/root-finding/Python` directory.
 
 **Description/Purpose:** This routine will compute an approximation of 10 roots of the following function,
 
@@ -70,4 +70,4 @@ Interval: (0.14, 0.17)
 .
 ```
 
-**Implementation/Code:** [newton-hybrid.py](../../src/root-finding/newton-hybrid.py)
+**Implementation/Code:** [newton-hybrid.py](../../src/root-finding/Python/newton-hybrid.py)

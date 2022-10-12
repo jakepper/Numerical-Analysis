@@ -14,7 +14,7 @@ or with the argument `-v` for tabular results
 
     python secant-hybrid.py -v
 
-from the `src/root-finding/` directory.
+from the `src/root-finding/Python` directory.
 
 **Description/Purpose:** This routine will compute an approximation of 10 roots of the following function,
 
@@ -67,4 +67,4 @@ Interval: (0.11, 0.125)
 .
 ```
 
-**Implementation/Code:** [secant-hybrid.py](../../src/root-finding/secant-hybrid.py)
+**Implementation/Code:** [secant-hybrid.py](../../src/root-finding/Python/secant-hybrid.py)

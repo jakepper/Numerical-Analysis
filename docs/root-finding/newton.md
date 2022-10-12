@@ -14,7 +14,7 @@ or with the argument `-v` for tabular results
 
     python newton.py -v
 
-from the `src/root-finding/` directory.
+from the `src/root-finding/Python` directory.
 
 **Description/Purpose:** This routine will compute an approximation of the root of the following function,
 
@@ -55,4 +55,4 @@ Enter x0: 0.4
            5            -7.8836e-11       8.878902e-06
 ```
 
-**Implementation/Code:** [newton.py](../../src/root-finding/newton.py)
+**Implementation/Code:** [newton.py](../../src/root-finding/Python/newton.py)

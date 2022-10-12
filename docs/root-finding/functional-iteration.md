@@ -14,7 +14,7 @@ or with the argument `-v` for tabular results
 
     python functional-iteration.py -v
 
-from the `src/root-finding/` directory.
+from the `src/root-finding/Python` directory.
 
 **Description/Purpose:** This routine will compute an approximation of the root of the following two functions,
 
@@ -58,4 +58,4 @@ and the program will output,
 
 as well as a few approximations for the roots of the second function in the description.
 
-**Implementation/Code:** [functional-iteration.py](../../src/root-finding/functional-iteration.py)
+**Implementation/Code:** [functional-iteration.py](../../src/root-finding/Python/functional-iteration.py)
