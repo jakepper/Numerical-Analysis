@@ -1,0 +1,1 @@
+void simple_linear_regression(double x[], double y[], int n, double result[]);
