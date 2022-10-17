@@ -1,5 +1,4 @@
 #include "functions.h"
-#include <math.h>
 
 void simple_linear_regression(double x[], double y[], int n, double result[])
 {
@@ -8,7 +7,7 @@ void simple_linear_regression(double x[], double y[], int n, double result[])
     for (int i = 0; i < n; i++)
     {
         sum_x += x[i];
-        sum_x2 += pow(x[i], 2);
+        sum_x2 += x[i] * x[i];
         sum_y += y[i];
         sum_xy += x[i] * y[i];
     }
