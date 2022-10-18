@@ -1,3 +1,9 @@
+/*
+    Compile Instructions:
+
+    gcc -o task-2&3.exe test_euler.c approx_f2.o ../fitting/simple_linear_regression.o
+*/
+
 #include "functions.h"
 #include <stdio.h>
 #include <math.h>
@@ -7,10 +13,10 @@ void simple_linear_regression(double x[], double y[], int n, double result[]);
 
 int main()
 {
-    int n = 3;
+    int n = 4;
     double h = 0.001;
 
-    double x[] = {-M_PI_4, 0, M_PI_4};
+    double x[] = {-M_PI_4, 0.0, M_PI_4, 1.0};
     double y[n];
 
     printf("f(x) = (x - pi/2) * tan^2(x) / (x^2 + 65)\n");

@@ -7,15 +7,14 @@ double explicit_euler(double (*f)(double, double, double), double t, double y, d
 
     if (v)
     {
-        printf("%12s%12s%12s", "STEP (k)", "t_k", "y_k");
-        printf("%12d%12f%12f", 0, t, y);
+        printf("%12s%12s%12s\n", "STEP (k)", "t_k", "y_k");
     }
 
     for (int k = 0; k < n; k++)
     {
         if (v)
         {
-            printf("%12d%12f%12f", k, t, y);
+            printf("%12d%12f%12f\n", k, t, y);
         }
         y += f(y, alpha, beta) * beta;
         t += beta;

@@ -1,3 +1,9 @@
+/*
+    Compile Instructions:
+
+    gcc -o task-5.exe test_euler.c explicit_euler.o
+*/
+
 #include "functions.h"
 #include <stdio.h>
 
@@ -11,10 +17,12 @@ int main()
     double beta = 0.0005;
     double P_0 = 10.0;
 
+    printf("\nIVP: dP/dt = alpha * P - beta * P^2, P(0) = P_0\n\n");
+
     for (int i = 0; i < 3; i++)
     {
-        printf("Testing alpha = %f", alpha[i]);
-        printf("Approximation: %f", explicit_euler(dP_dt, 0, P_0, alpha[i], beta, verbose));
+        printf("Testing alpha = %f, beta = %f, P_0 = %f\n\n", alpha[i], beta, P_0);
+        printf("\tApproximation: %f\n\n", explicit_euler(dP_dt, 0, P_0, alpha[i], beta, verbose));
     }
 
     return 0;
