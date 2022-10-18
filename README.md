@@ -9,3 +9,15 @@
 - [Newton Hybrid](./docs/root-finding/newton-hybrid.md)
 - [Secant](./docs/root-finding/secant.md)
 - [Secant Hybrid](./docs/root-finding/secant-hybrid.md)
+
+### Differentiation
+- [First Derivitive Approximation](./docs/differentiation/approx-f1.md)
+- [Second Derivitive Approximation](./docs/differentiation/approx-f2.md)
+- [Explicit Euler Approximation](./docs/differentiation/explicit-euler.md)
+
+### Fitting
+- [Simple Linear Regression](./docs/fitting/simple-linear-regression.md)
+
+### Helper Functions
+- [Absolute Error](./docs/helper-functions/abs-err.md)
+- [Relative Error](./docs/helper-functions/rel-err.md)
