@@ -24,7 +24,7 @@ def test_task_1(verbose):
 
 def test_task_3(verbose):
     print('\nFunctional Iteration with f(x) = 10.14 * e^(x^2) * cos(\u03C0/x)')
-    n = 20
+    n = 40
     x0 = -3.0
     dx = 10.0 / n
     g = lambda x: x - 10.14 * (np.exp(x*x)) * np.cos(np.pi / x)
@@ -34,9 +34,9 @@ def test_task_3(verbose):
         if x0 != 0:
             func_iter(x0, g, TOLERANCE, MAX_ITERS, verbose=verbose)
         x0 += dx
-    # with epsilon = 0.000001
+    # with epsilon = 0.0001
     x0 = 3.0
-    epsilon = 0.000001
+    epsilon = 0.0001
     g = lambda x: x - epsilon * (10.14 * (np.exp(x*x)) * np.cos(np.pi / x))
     print(f'\n   g -> x - \u03B5f(x), \u03B5 = {epsilon}')
     for x in range(n):
@@ -45,17 +45,17 @@ def test_task_3(verbose):
         x0 += dx
     print()
     
-def test_task_4(verbose=False):
+def test_task_4(verbose):
     print('\nBisection with f(x) = x * e^(-x)')
     a = -1.234
     b = 2.654
     f = lambda x: x * np.exp(-x)
     bisect(a, b, f, TOLERANCE, verbose=verbose)
     print('\nBisection with f(x) = 10.14 * e^(x^2) * cos(\u03C0/x)')
-    a = 0.6
-    b = 0.7
+    ab = [(0.18, 0.185), (0.215, 0.225), (0.275, 0.29), (0.37, 0.42), (0.6, 0.7)] # bounds containing roots
     f = lambda x: 10.14 * (np.exp(x*x)) * np.cos(np.pi / x)
-    bisect(a, b, f, TOLERANCE, verbose=verbose)
+    for bounds in ab:
+        bisect(bounds[0], bounds[1], f, TOLERANCE, verbose=verbose)
 
 FUNCTIONS = {
     '1': test_task_1,

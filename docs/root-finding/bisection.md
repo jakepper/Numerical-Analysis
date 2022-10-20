@@ -6,7 +6,7 @@
 
 **Language:** Python
 
-Run the `tasksheet1` program  as follows to test the bisection method,
+Run the `tasksheet1` program  as follows to test the bisect method,
 
     python tasksheet1.py -t 4
 

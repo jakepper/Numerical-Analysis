@@ -6,7 +6,7 @@
 
 **Language:** Python
 
-The program can be ran as follows,
+Run the `tasksheet1` program  as follows to test the func_iter method,
 
     python tasksheet1.py -t 1
 
