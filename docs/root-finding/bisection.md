@@ -1,66 +1,57 @@
 # Bisection
 
-**Routine Name:** bisection
+**Routine Name:** bisect
 
 **Author:** Jake Epperson
 
 **Language:** Python
 
-The program can be ran as follows,
+Run the `tasksheet1` program  as follows to test the bisection method,
 
-    python bisection.py
+    python tasksheet1.py -t 4
 
 or with the argument `-v` for tabular results
 
-    python bisection.py -v
+    python tasksheet1.py -t 4 -v
 
 from the `src/root-finding/Python` directory.
 
-**Description/Purpose:** This routine will compute an approximation of the root of the following two functions,
-
-$$ f(x) = xe^{-x} $$
-$$ f(x) = 10.14 * e^{x^2} * cos(\frac{\pi}{x}) $$
+**Description/Purpose:** This routine will compute an approximation of the root of of a given function f(x).
 
 This is done using the bisection method of root finding.
 
 **Inputs:**
 
-Pre-determined Inputs
-- $ f(x) $
-- Tolerance : upper bound for the error in the approximation
-
-User Inputs
 - $ a $ : Lower Bound
 - $ b $ : Upper Bound
+- $ f(x) $ function to approximate root of
+- tol : upper bound for the error in the approximation
+- verbose : specifies whether to print tabular results
 
 Calculated Inputs
-- Max Iterations $k$
+- Iterations ($k$)
 
-Command Line Inputs
+**Output:** 
 
-- `-v` for tabulation of results : *optional*
-
-**Output:** This routine returns an approximation value for the root of $f(x)$. When specified, this routine will output the approximate root and error pertaining to each iteration of the root finding method in a tabular form.
+- Approximate root is printed 
+- Tabular data is printed when specified
+- Approximate root is returned
 
 **Usage/Example:**
 
-    python bisection.py
+    python tasksheet1.py -t 4
 
+Output:
 ```
 Bisection with f(x) = x * e^(-x)
 
-Lower Bound: -1
-Upper Bound: 0.5
+   Approximate Root: -0.000001
 
-Iterations: 114
-Approximate Root: -0.000001
 Bisection with f(x) = 10.14 * e^(x^2) * cos(π/x)
 
-Lower Bound: 1.9
-Upper Bound: 2.2
-
-Iterations: 37
-Approximate root: 2.000000
+   Approximate Root: 0.666667
 ```
 
 **Implementation/Code:** [bisection.py](../../src/root-finding/Python/bisection.py)
+
+**Test Implementation/Code:** [tasksheet1.py](../../src/root-finding/Python/tasksheet1.py)

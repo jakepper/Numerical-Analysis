@@ -1,6 +1,6 @@
 # Functional Iteration
 
-**Routine Name:** functional-iteration
+**Routine Name:** func_iter
 
 **Author:** Jake Epperson
 
@@ -8,54 +8,48 @@
 
 The program can be ran as follows,
 
-    python functional-iteration.py
+    python tasksheet1.py -t 1
 
 or with the argument `-v` for tabular results
 
-    python functional-iteration.py -v
+    python tasksheet1.py -t 1 -v
 
 from the `src/root-finding/Python` directory.
 
-**Description/Purpose:** This routine will compute an approximation of the root of the following two functions,
-
-$$ f(x) = xe^{-x} $$
-$$ f(x) = 10.14 * e^{x^2} * cos(\frac{\pi}{x}) $$
+**Description/Purpose:** This routine will compute an approximation of the root of a given function f(x),
 
 This is done using the funcitonal iteration method of root finding.
 
 **Inputs:**
 
-Pre-determined Inputs
-- $ f(x) $
+- x0 : initial x value to begin iteration with
+- $ g $ : function used during iteration used to approximate root
 - Tolerance : upper bound for the error in the approximation
 - Max Iterations : maximum allowed iterations before program terminates
+- verbose : specifies whether to print tabular results
 
-User Inputs
-- $ x_0 $ : initial approximation
+**Output:**
 
-Command Line Inputs
-
-- `-v` for tabulation of results : *optional*
-
-**Output:** This routine returns an approximation value for the root of $f(x)$. When specified, this routine will output the approximate root and error pertaining to each iteration of the root finding method in a tabular form.
+- Approximate root is printed 
+- Tabular data is printed when specified
+- Approximate root is returned
 
 **Usage/Example:**
 
-    python functional-iteration.py
- 
-After running the program you will be prompted with,
+    python tasksheet1.py -t 1
 
-    Functional Iteration with f(x) = x * e^(-x)
+Output:
+```
+Functional Iteration with f(x) = x * e^(-x)
 
-    Enter x0: 0.5
+   g -> x - f(x)
 
-and the program will output,
+   Approximate Root: 0.000000
 
+   g -> x + f(x)
 
-        g1->[x - f(x)] Approximate Root: 0.000000
+   Approximate Root: 4.530660
+```
+**Implementation/Code:** [functional-iteration.py](../../src/root-finding/Python/functional_iteration.py)
 
-        g2->[x + f(x)] Approximate Root: 4.416481
-
-as well as a few approximations for the roots of the second function in the description.
-
-**Implementation/Code:** [functional-iteration.py](../../src/root-finding/Python/functional-iteration.py)
+**Test Implementation/Code:** [tasksheet1.py](../../src/root-finding/Python/tasksheet1.py)

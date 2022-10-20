@@ -1,6 +1,5 @@
 import numpy as np
 
-
 def bisect(a, b, f, tol, verbose=False):
     if verbose:
         print('\n   {:^16s}{:^16s}{:^16s}{:^16s}{:^16s}{:^16s}{:^16s}'.format('Iteration','a','b','midpoint (m)','f(a)','f(b)','f(m)'))
