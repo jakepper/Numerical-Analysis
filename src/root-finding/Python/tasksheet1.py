@@ -25,24 +25,20 @@ def test_task_1(verbose):
 def test_task_3(verbose):
     print('\nFunctional Iteration with f(x) = 10.14 * e^(x^2) * cos(\u03C0/x)')
     n = 40
-    x0 = -3.0
-    dx = 10.0 / n
+    x0 = np.arange(-3, 7, 10/n)
     g = lambda x: x - 10.14 * (np.exp(x*x)) * np.cos(np.pi / x)
     # without epsilon
     print('\n   g -> x - f(x)')
-    for x in range(n):
-        if x0 != 0:
-            func_iter(x0, g, TOLERANCE, MAX_ITERS, verbose=verbose)
-        x0 += dx
+    for x in x0:
+        if x != 0:
+            func_iter(x, g, TOLERANCE, MAX_ITERS, verbose=verbose)
     # with epsilon = 0.0001
-    x0 = 3.0
     epsilon = 0.0001
     g = lambda x: x - epsilon * (10.14 * (np.exp(x*x)) * np.cos(np.pi / x))
     print(f'\n   g -> x - \u03B5f(x), \u03B5 = {epsilon}')
     for x in range(n):
-        if x0 != 0:
-            func_iter(x0, g, TOLERANCE, MAX_ITERS, verbose=verbose)
-        x0 += dx
+        if x != 0:
+            func_iter(x, g, TOLERANCE, MAX_ITERS, verbose=verbose)
     print()
     
 def test_task_4(verbose):
