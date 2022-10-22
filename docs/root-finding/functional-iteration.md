@@ -22,17 +22,16 @@ This is done using the funcitonal iteration method of root finding.
 
 **Inputs:**
 
-- x0 : initial x value to begin iteration with
-- $ g $ : function used during iteration used to approximate root
+- x0 : initial approximation
+- $ g $ : approximation function
 - Tolerance : upper bound for the error in the approximation
 - Max Iterations : maximum allowed iterations before program terminates
 - verbose : specifies whether to print tabular results
 
 **Output:**
 
-- Approximate root is printed 
 - Tabular data is printed when specified
-- Approximate root is returned
+- Approximate root is printed and returned
 
 **Usage/Example:**
 

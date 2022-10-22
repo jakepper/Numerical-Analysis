@@ -1,73 +1,88 @@
-# Newton/Bisection Hybrid Method
+# Newton-Bisection Hybrid
 
-**Routine Name:** newton-hybrid
+**Routine Name:** newton_hybrid
 
 **Author:** Jake Epperson
 
 **Language:** Python
 
-The program can be ran as follows,
+Run the `tasksheet2` program  as follows to test the newton_hybrid method,
 
-    python newton-hybrid.py
+    python tasksheet2.py -t 4
 
 or with the argument `-v` for tabular results
 
-    python newton-hybrid.py -v
+    python tasksheet2.py -t 4 -v
 
 from the `src/root-finding/Python` directory.
 
-**Description/Purpose:** This routine will compute an approximation of 10 roots of the following function,
+**Description/Purpose:** This routine will compute an approximation of the root of a given function f(x),
 
-$$ f(x) = 10.14e^{x^2}\cos(\frac{\pi}{x}) $$
-
-This is done using a Newton and bisection hybrid method for root finding.
+This is done using a Newton-bisection hybrid method of root finding.
 
 **Inputs:**
 
-Pre-determined Inputs
-- $ f(x) $
-- $ f'(x) $
-- $ g(x) $ : Newton's approximation function
-- Tolerance : upper bound for the error in the approximation
-- Max Iterations : maximum allowed iterations before program terminates
-- Intervals of which will be tested
+- a : lower bound of initial approximation
+- b : upper bound of initial approximation
+- f : function of which we are approximating the root/s of
+- f_prime : derivative of f (used in approximation)
+- tol : upper bound for the error in the approximation
+- max_iters : maximum allowed iterations before program terminates
+- verbose : specifies whether to print tabular results
 
-Calculated Inputs
-- $x_0$ : initial approximation
-- Max Bisection iterations $k$
+**Output:**
 
-Command Line Inputs
-- `-v` for tabulation of results : *optional*
-
-**Output:** This routine returns an approximation value for the roots of $ f(x) $. When specified, this routine will output the approximate root and error pertaining to each iteration of the root finding method in a tabular form.
+- Tabular data is printed when specified
+- Approximate root is printed and returned
 
 **Usage/Example:**
 
-    python newton-hybrid.py -v
+    python tasksheet2.py -t 4
+
+Output:
 ```
-.
-.
-.
-Interval: (0.14, 0.17)
+Newton Hybrid method with f(x) = x * e^(-x)
 
-        Approximate Root: 0.153846
+Interval [0.1, 0.11]:
 
-       Iteration           ~Root             Error              Type
-           1             1.5383e-01       1.171113e-03         newton
-           1             1.5500e-01       1.572814e+00       bisection
-           2             1.4750e-01       7.977809e+00       bisection
-           3             1.5125e-01       3.562395e+00       bisection
-           4             1.5313e-01       9.967732e-01       bisection
-           5             1.5406e-01       2.977159e-01       bisection
-           6             1.5359e-01       3.483273e-01       bisection
-           7             1.5383e-01       2.484905e-02       bisection
-           8             1.5395e-01       1.365668e-01       bisection
-           9             1.5389e-01       5.588985e-02       bisection
-           2             1.5385e-01       4.057548e-05         newton
-           3             1.5385e-01       1.058101e-08         newton
-.
-.
-.
+   Approximate Root: 0.105263
+
+Interval [0.11, 0.125]:
+
+   Approximate Root: 0.117647
+
+Interval [0.125, 0.14]:
+
+   Approximate Root: 0.133333
+
+Interval [0.14, 0.17]:
+
+   Approximate Root: 0.153846
+
+Interval [0.17, 0.21]:
+
+   Approximate Root: 0.181818
+
+Interval [0.21, 0.26]:
+
+   Approximate Root: 0.222222
+
+Interval [0.26, 0.31]:
+
+   Approximate Root: 0.285714
+
+Interval [0.31, 0.6]:
+
+   Approximate Root: 0.400000
+
+Interval [0.6, 1]:
+
+   Approximate Root: 0.666667
+
+Interval [1, 2.8]:
+
+   Approximate Root: 2.000000
 ```
+**Implementation/Code:** [newton_hybrid.py](../../src/root-finding/Python/newton_hybrid.py)
 
-**Implementation/Code:** [newton-hybrid.py](../../src/root-finding/Python/newton-hybrid.py)
+**Test Implementation/Code:** [tasksheet2.py](../../src/root-finding/Python/tasksheet2.py)

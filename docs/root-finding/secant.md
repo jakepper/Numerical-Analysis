@@ -1,4 +1,4 @@
-# Secant Method
+# Secant
 
 **Routine Name:** secant
 
@@ -6,57 +6,44 @@
 
 **Language:** Python
 
-The program can be ran as follows,
+Run the `tasksheet2` program  as follows to test the secant method,
 
-    python secant.py
+    python tasksheet2.py -t 2
 
 or with the argument `-v` for tabular results
 
-    python secant.py -v
+    python tasksheet2.py -t 2 -v
 
 from the `src/root-finding/Python` directory.
 
-**Description/Purpose:** This routine will compute an approximation of the root of the following function,
-
-$$ f(x) = xe^{-x} $$
+**Description/Purpose:** This routine will compute an approximation of the root of a given function f(x),
 
 This is done using the secant method of root finding.
 
 **Inputs:**
 
-Pre-determined Inputs
-- $ f(x) $
-- Tolerance : upper bound for the error in the approximation
-- Max Iterations : maximum allowed iterations before program terminates
+- x0 : lower bound
+- x1 : upper bound
+- f : function of which we are approximating the root/s of
+- tol : upper bound for the error in the approximation
+- max_iters : maximum allowed iterations before program terminates
+- verbose : specifies whether to print tabular results
 
-User Inputs
-- $ a $ : Lower Bound
-- $ b $ : Upper Bound
+**Output:**
 
-Command Line Inputs
-
-- `-v` for tabulation of results : *optional*
-
-**Output:** This routine returns an approximation value for the root of $f(x)$. When specified, this routine will output the approximate root and error pertaining to each iteration of the root finding method in a tabular form.
+- Tabular data is printed when specified
+- Approximate root is printed and returned
 
 **Usage/Example:**
 
-    python secant.py -v
+    python tasksheet2.py -t 2
 
+Output:
 ```
-Lower Bound (x0): -0.8
-Upper Bound (x1): 0.6
+Secant method with f(x) = x * e^(-x)
 
-        Approximate Root: 0.000007
-
-       Iteration           ~Root             Error
-           1             3.8149e-01       2.604965e-01
-           2            -4.4598e-01       6.966325e-01
-           3             1.5628e-01       1.336689e-01
-           4             5.9322e-02       5.590560e-02
-           5            -1.0382e-02       1.049026e-02
-           6             6.3107e-04       6.306688e-04
-           7             6.5198e-06       6.519788e-06
+        Approximate Root: -0.000000
 ```
-
 **Implementation/Code:** [secant.py](../../src/root-finding/Python/secant.py)
+
+**Test Implementation/Code:** [tasksheet2.py](../../src/root-finding/Python/tasksheet2.py)

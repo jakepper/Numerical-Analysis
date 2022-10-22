@@ -16,5 +16,5 @@ def func_iter(x0, g, tol, max_iters, verbose=False):
             print('   {:^18d}{:^18.4e}{:^18e}'.format(i + 1, x0, error))
         i += 1
     
-    print('\n   Approximate Root: {:f}'.format(root))
+    print('\n\tApproximate Root: {:f}'.format(root))
     return root

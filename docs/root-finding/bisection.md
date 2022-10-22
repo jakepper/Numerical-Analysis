@@ -33,9 +33,9 @@ Calculated Inputs
 
 **Output:** 
 
-- Approximate root is printed 
 - Tabular data is printed when specified
-- Approximate root is returned
+- Approximate root is printed 
+- Ending Bounds (a, b) and root are returned
 
 **Usage/Example:**
 

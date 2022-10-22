@@ -70,7 +70,7 @@ parser.add_argument('-t', '--tasks',
 parser.add_argument('-v', '--verbose', 
                         action='store_true', 
                         default=False,
-                        help="Test Task 1" 
+                        help="Verbose mode - Tabular results"
                     )
 
 args = parser.parse_args(sys.argv[1:])

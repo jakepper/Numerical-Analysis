@@ -1,4 +1,4 @@
-# Newton's Method
+# Secant
 
 **Routine Name:** newton
 
@@ -6,53 +6,44 @@
 
 **Language:** Python
 
-The program can be ran as follows,
+Run the `tasksheet2` program  as follows to test the newton method,
 
-    python newton.py
+    python tasksheet2.py -t 1
 
 or with the argument `-v` for tabular results
 
-    python newton.py -v
+    python tasksheet2.py -t 1 -v
 
 from the `src/root-finding/Python` directory.
 
-**Description/Purpose:** This routine will compute an approximation of the root of the following function,
+**Description/Purpose:** This routine will compute an approximation of the root of a given function f(x),
 
-$$ f(x) = xe^{-x} $$
-
-This is done using the Newton's method for root finding.
+This is done using Newton's method of root finding.
 
 **Inputs:**
 
-Pre-determined Inputs
-- $ f(x) $
-- $ f'(x) $
-- Tolerance : upper bound for the error in the approximation
-- Max Iterations : maximum allowed iterations before program terminates
+- x0 : initial approximation
+- f : function of which we are approximating the root/s of
+- f_prime : derivative of f (used in approximation)
+- tol : upper bound for the error in the approximation
+- max_iters : maximum allowed iterations before program terminates
+- verbose : specifies whether to print tabular results
 
-User Inputs
-- $ x_0 $ : initial approximation
+**Output:**
 
-Command Line Inputs
-
-- `-v` for tabulation of results : *optional*
-
-**Output:** This routine returns an approximation value for the root of $ f(x) $. When specified, this routine will output the approximate root and error pertaining to each iteration of the root finding method in a tabular form.
+- Tabular data is printed when specified
+- Approximate root is printed and returned
 
 **Usage/Example:**
 
-    python newton.py -v
+    python tasksheet2.py -t 1
+
+Output:
 ```
-Enter x0: 0.4
+Newtons method with f(x) = x * e^(-x)
 
         Approximate Root: -0.000000
-
-       Iteration           ~Root             Error
-           1            -2.6667e-01       6.666667e-01
-           2            -5.6140e-02       2.105263e-01
-           3            -2.9842e-03       5.315615e-02
-           4            -8.8790e-06       2.975326e-03
-           5            -7.8836e-11       8.878902e-06
 ```
-
 **Implementation/Code:** [newton.py](../../src/root-finding/Python/newton.py)
+
+**Test Implementation/Code:** [tasksheet2.py](../../src/root-finding/Python/tasksheet2.py)
