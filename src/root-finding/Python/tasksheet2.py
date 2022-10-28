@@ -32,7 +32,7 @@ def test_task_2(verbose):
     print()
     
 def test_task_4(verbose):
-    print('\nNewton Hybrid method with f(x) = x * e^(-x)')
+    print('\nNewton Hybrid method with f(x) = 10.14 * e^(x^2) * cos(\u03C0/x)')
     f = lambda x: 10.14 * np.exp(x*x) * np.cos(np.pi/x)
     f_prime = lambda x: ((1014 * np.cos(np.pi/x) * x*x*x) + (507 * np.pi * np.sin(np.pi/x))) * (np.exp(x*x)) / (50 * x*x)
     intervals = [0.1, 0.11, 0.125, 0.14, 0.17, 0.21, 0.26, 0.31, 0.6, 1, 2.8] # testing on 10 roots
@@ -44,7 +44,7 @@ def test_task_4(verbose):
     print()
 
 def test_task_5(verbose):
-    print('\nSecant Hybrid method with f(x) = x * e^(-x)')
+    print('\nSecant Hybrid method with f(x) = 10.14 * e^(x^2) * cos(\u03C0/x)')
     f = lambda x: 10.14 * np.exp(x*x) * np.cos(np.pi/x)
     intervals = [0.1, 0.11, 0.125, 0.14, 0.17, 0.21, 0.26, 0.31, 0.6, 1, 2.8] # testing on 10 roots
     for i in range(len(intervals) - 1):
