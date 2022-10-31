@@ -1,5 +1,4 @@
 #include <math.h>
-
 #include "functions.h"
 
 double secant(double x0, double x1, double (*f)(double x), float tol, int iters) {

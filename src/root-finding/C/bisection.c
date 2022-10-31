@@ -1,6 +1,4 @@
-#include <stdio.h>
 #include <math.h>
-
 #include "functions.h"
 
 double bisect(double a, double b, double (*f)(double x), int iters, double results[]) {

@@ -1,6 +1,4 @@
-#include <stdio.h>
 #include <math.h>
-
 #include "functions.h"
 
 double newton(double x0, double (*f)(double x), double (*f_prime)(double x), float tol, int iters) {

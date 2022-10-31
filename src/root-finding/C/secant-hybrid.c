@@ -1,6 +1,4 @@
 #include <math.h>
-#include <stdio.h>
-
 #include "functions.h"
 
 double secant_hybrid(double x0, double x1, double (*f)(double), float tol, int iters, int k) {

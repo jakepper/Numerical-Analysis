@@ -3,7 +3,7 @@
 
 #include "functions.h"
 
-float TOL = 0.00001;
+float TOL = 0.000001;
 int MAX_ITERS = 25;
 
 double f(double);

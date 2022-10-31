@@ -1,5 +1,4 @@
 #include <math.h>
-
 #include "functions.h"
 
 double iterate(double x0, double (*f)(double x), float tol, int iters) {

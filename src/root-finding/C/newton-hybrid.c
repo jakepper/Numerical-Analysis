@@ -1,5 +1,4 @@
 #include <math.h>
-
 #include "functions.h"
 
 double newton_hybrid(double a, double b, double (*f)(double), double (*f_prime)(double), float tol, int iters, int k) {
