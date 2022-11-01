@@ -1,6 +1,6 @@
 import numpy as np
 
-from bisection import bisect
+from bisect import bisect
 
 def newton_hybrid(a, b, f, f_prime, tol, max_iters, verbose=False):
     if verbose:

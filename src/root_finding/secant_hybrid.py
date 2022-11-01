@@ -1,6 +1,6 @@
 import numpy as np
 
-from bisection import bisect
+from bisect import bisect
 
 
 def secant_hybrid(x0, x1, f, tol, max_iters, verbose=False):

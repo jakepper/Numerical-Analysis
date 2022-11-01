@@ -4,10 +4,10 @@ import warnings
 import random
 import numpy as np
 
-from newton import newton
-from secant import secant
-from newton_hybrid import newton_hybrid
-from secant_hybrid import secant_hybrid
+from root_finding.newton import newton
+from root_finding.secant import secant
+from root_finding.newton_hybrid import newton_hybrid
+from root_finding.secant_hybrid import secant_hybrid
 
 
 TOLERANCE = 0.000001
