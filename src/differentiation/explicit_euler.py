@@ -1,4 +1,3 @@
-
 def explicit_euler(f, T, Y, step, n, verbose=False):
     if verbose:
         print("%12s%12s%12s".format("step (k)", "y", "t"))

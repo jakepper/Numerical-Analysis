@@ -118,7 +118,7 @@ def task_5():
         errors.append(np.abs(actual - integration.simpson(f, a, b, n)))
     plt.loglog(N, errors, base=2)
     intercept, slope = fitting.simple_linear_regression(np.log2(N), np.log2(np.array(errors)))
-    print(f"Convergence rate of Simpsons: {slope}")
+    print(f"Convergence rate of Simpsons: {np.abs(slope)}")
     plt.legend([f'O(h^{np.abs(slope)})'])
     plt.xlabel("log2(n)")
     plt.ylabel("log2(error)")
