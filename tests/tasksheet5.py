@@ -14,18 +14,18 @@ def task_1():
     endpoint = 50
     alphas = [0.01, 0.2, 2.0]
     beta = 0.0005
+    P0 = 10.0
     T = np.arange(0, endpoint, step)
+    f1 = plt.figure("Implicit Euler's Solution")
     for alpha in alphas:
         dP_dt = lambda t, p: alpha * p - beta * p * p
         dP_dt_prime = lambda p: alpha - 2 * beta * p
-        P = np.zeros(T.shape[0])
-        P[0] = 10.0
-        differentiation.implicit_euler(dP_dt, dP_dt_prime, T, P, step, T.shape[0])
+        P = differentiation.implicit_euler(dP_dt, dP_dt_prime, T, P0, step, T.shape[0])
         plt.plot(T, P)
     plt.legend(['alpha = 0.01', 'alpha = 0.2', 'alpha = 2.0'])
     plt.xlabel("t")
     plt.ylabel("P")
-    plt.title("Implicit Euler method on logistic equation dP/dt = alpha * P - beta * P^2")
+    plt.title("Implicit Euler method : dP/dt = alpha * P - beta * P^2")
     plt.show()
 
 def task_2():
@@ -35,15 +35,16 @@ def task_2():
     beta = 0.0005
     P0 = 10.0
     T = np.arange(0, endpoint, step)
+    f1 = plt.figure("Explicit Euler's Solution")
     for alpha in alphas:
         c = (alpha - P0 * beta) / P0
         p = lambda t: alpha / (c * np.exp(-alpha * t) + beta)
-        solutions = differentiation.analytic_sol(p, T)
-        plt.plot(T, solutions)
+        P = differentiation.analytic_sol(p, T)
+        plt.plot(T, P)
     plt.legend(['alpha = 0.01', 'alpha = 0.2', 'alpha = 2.0'])
     plt.xlabel("t")
     plt.ylabel("P")
-    plt.title("Analytic solution of logistic equation dP/dt = alpha * P - beta * P^2")
+    plt.title("Analytic Solution : dP/dt = alpha * P - beta * P^2")
     plt.show()
 
 def task_3():
@@ -59,21 +60,17 @@ def task_3():
     for alpha in alphas:
         dP_dt = lambda t, p: alpha * p - beta * p * p
         dP_dt_prime = lambda p: alpha - 2 * beta * p
-        P = np.zeros(T.shape[0])
-        P[0] = P0
-        differentiation.implicit_euler(dP_dt, dP_dt_prime, T, P, step, T.shape[0])
+        P = differentiation.implicit_euler(dP_dt, dP_dt_prime, T, P0, step, T.shape[0])
         plt.plot(T, P)
     plt.legend(['Implicit: alpha=0.01', 'Implicit: alpha=0.2', 'Implicit: alpha=2.0'])
     plt.xlabel("t")
     plt.ylabel("P")
 
     # Explicit Solutions
-    f2 = plt.figure("Explicit Euler's Solutoin")
+    f2 = plt.figure("Explicit Euler's Solution")
     for alpha in alphas:
         dP_dt = lambda t, p: alpha * p - beta * p * p
-        P = np.zeros(T.shape[0])
-        P[0] = P0
-        differentiation.explicit_euler(dP_dt, T, P, step, T.shape[0])
+        P = differentiation.explicit_euler(dP_dt, T, P0, step, T.shape[0])
         plt.plot(T, P)
     plt.legend(['Explicit: alpha=0.01', 'Explicit: alpha=0.2', 'Explicit: alpha=2.0'])
     plt.xlabel("t")
@@ -116,6 +113,7 @@ def task_5():
     errors = []
     for n in N:
         errors.append(np.abs(actual - integration.simpson(f, a, b, n)))
+    f1 = plt.figure("Simpson Convergence Rate")
     plt.loglog(N, errors, base=2)
     intercept, slope = fitting.simple_linear_regression(np.log2(N), np.log2(np.array(errors)))
     print(f"Convergence rate of Simpsons: {np.abs(slope)}")

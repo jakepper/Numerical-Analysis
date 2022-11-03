@@ -4,28 +4,28 @@
 
 **Author:** Jake Epperson
 
-**Language:** C
+**Language:** Python
 
-The program can be compiled into an object file as follows,
+Run the `tasksheet5` program as follows to test the explicit_euler method,
 
-    gcc -c explicit_euler.c
+    python tests/tasksheet5.py -t 1
 
-from the `src/differentiation/` directory.
+from the `math4610/` directory.
 
-**Description/Purpose:** This routine will compute an approximation of the solution to an ordinary differential equation initial value problem.
+**Description/Purpose:** This routine will compute an approximation of the solution to an ordinary differential equation initial value problem using the Explicit Euler method.
 
 **Inputs:**
 
-- f : double (*f) ; dx/dt
-- t : double ; initial value of t
-- y : double ; x(t_0)
-- alpha : double ; growth constant alpha>0
-- beta : double ; limiting constant beta>0
+- f : dy/dt
+- T : np.array of t values to approximate a solution at
+- f0 : y(0) = y_0 (initial value)
+- step : partition size
+- n : number of partitions
 
-**Output:** approximate solution : double
+**Output:** Y : np.array of approximated values
 
 **Usage/Example:**
     
-see example [here](../../src/differentiation/test_euler.c)
+*TODO*
 
-**Implementation/Code:** [explicit_euler.c](../../src/differentiation/explicit_euler.c)
+**Implementation/Code:** [explicit_euler.py](../../src/differentiation/explicit_euler.py)
