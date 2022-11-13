@@ -1,13 +1,28 @@
+import os
 import sys
 import argparse
+import subprocess
 import numpy as np
+
+cwd = os.getcwd()
 
 sys.path.append("src/")
 from linear_algebra import vectors
 from linear_algebra import matrices
 
+def task_2():
+    subprocess.run(["./src/integration/C/pi.exe"])
+    print()
+
+def task_3():
+    task_2()
+
+def task_4():
+    subprocess.run(["./src/integration/C/e.exe"])
+    print()
+
 def task_5():
-    print("\nLinear Algebra")
+    print("Linear Algebra")
     print("\nVector operations with,\n")
     u = np.array([2, 3, 4])
     v = np.array([5, 6, 7])
@@ -41,10 +56,9 @@ def task_5():
     print(matrices.action(A, b), '\n')
 
 FUNCTIONS = {
-    # '1': task_1,
-    # '2': task_2,
-    # '3': task_3,
-    # '4': task_4,
+    '2': task_2,
+    '3': task_2,
+    '4': task_4,
     '5': task_5
 }
 
