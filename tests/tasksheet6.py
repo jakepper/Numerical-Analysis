@@ -34,6 +34,7 @@ def task_5():
     print("2 * v:", vectors.mult(2, u))
     print("u . v:", vectors.dot(u, v))
     print("u x v:", vectors.cross(u, v))
+    print("u x v x u:", vectors.triple(u, v, u))
 
     print("\nMatrix operations with,\n")
     A = np.array([[1, 2, 3], [1, 2, 3], [1, 2, 3]])

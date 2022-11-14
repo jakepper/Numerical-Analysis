@@ -17,13 +17,13 @@ int main() {
     long STEPS = 1000;
     start = clock();
 
-    /* Serial e Approximation*/
+    /* Serial e Approximation */
     printf("Serial approximation of e with n = %ld\n\n", STEPS);
     printf("\tResult: %.52f\n\n", approx_e(STEPS, 0));
 
     mid = clock();
 
-    /* Parallel e Approximation*/
+    /* Parallel e Approximation */
     printf("Parallel approximation of e with n = %ld\n\n", STEPS);
     printf("\tResult: %.52f\n\n", approx_e(STEPS, 1));
 

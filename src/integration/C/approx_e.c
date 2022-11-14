@@ -2,7 +2,7 @@
 
 
 double approx_e(long n, short parallel) {
-    double e = 0;
+    double e = 0.0;
     float factorial = 1.0;
 
     if (parallel) {

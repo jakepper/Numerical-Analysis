@@ -17,13 +17,13 @@ int main() {
     long STEPS = 1000;
     start = clock();
 
-    /* Serial PI Approximation*/
+    /* Serial PI Approximation */
     printf("Serial approximation of PI with %ld partitions\n\n", STEPS);
     printf("\tResult: %.52f\n\n", approx_pi(STEPS, 0));
 
     mid = clock();
 
-    /* Parallel PI Approximation*/
+    /* Parallel PI Approximation */
     printf("Parallel approximation of PI with %ld partitions\n\n", STEPS);
     printf("\tResult: %.52f\n\n", approx_pi(STEPS, 1));
 
