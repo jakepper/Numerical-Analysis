@@ -32,6 +32,9 @@ def task_5():
     print("u + v:", vectors.add(u, v))
     print("u - v:", vectors.sub(u, v))
     print("2 * v:", vectors.mult(2, u))
+    print("|v|_1:", vectors.norm(v, 1))
+    print("|v|_2:", vectors.norm(v, 2))
+    print("|v|_3:", vectors.norm(v, 3))
     print("u . v:", vectors.dot(u, v))
     print("u x v:", vectors.cross(u, v))
     print("u x v x u:", vectors.triple(u, v, u))
@@ -70,11 +73,6 @@ parser.add_argument('-t', '--tasks',
                         help='Tasks to be tested',
                         required=True
                     )
-# parser.add_argument('-v', '--verbose', 
-#                         action='store_true', 
-#                         default=False,
-#                         help="Verbose mode - Tabular results"
-#                     )
 
 args = parser.parse_args(sys.argv[1:])
 

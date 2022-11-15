@@ -22,13 +22,18 @@ def sub(u, v):
         result[i] = u[i] - v[i]
     return result
 
-
 def mult(c, v):
     n = v.shape[0]
     result = np.zeros(n)
     for i in range(n):
         result[i] = c * v[i]
     return result
+
+def norm(v, p=2):
+    sum = 0.0
+    for i in range(v.shape[0]):
+        sum += np.abs(v[i]) ** p
+    return np.power(sum, 1 / p)
 
 def dot(u, v):
     if u.shape != v.shape:

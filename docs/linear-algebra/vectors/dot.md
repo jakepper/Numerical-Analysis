@@ -13,7 +13,7 @@
 - u : numpy array (vector)
 - v : numpy array (vector)
 
-**Output:** u $\cdot$ v : numpy array (vector)
+**Output:** u $\cdot$ v : number
 
 **Usage/Example:**
  
