@@ -1,14 +1,21 @@
+/*
+    Compiler Instructions:
+
+    gcc -c vectors.c matrices.c -fopenmp -O3
+    gcc -o out test.c vectors.o matrices.o -fopenmp -O3
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <assert.h>
-#include <time.h>
+#include <omp.h>
 
 #include "vectors.h"
 #include "matrices.h"
 
 #define LIMIT 10
-#define M 4096
-#define N 4096
+#define M 2048
+#define N 2048
 
 void print_matrix(int m, int n, float[m][n]);
 void print_vector(int n, float[]);
@@ -18,7 +25,7 @@ void gen_matrix(int m, int n, float A[m][n]);
 void arr_alloc (size_t m, size_t n, float(**aptr)[m][n]);
 
 int main(void) {
-    clock_t start, end;
+    double time;
 
     float u[N];
     float v[N];
@@ -27,17 +34,15 @@ int main(void) {
     float v_result[N];
 
     printf("Hadamard Vector Product (serial)\n");
-    start = clock();
+    time = omp_get_wtime();
     v_hadamard_s(u, v, N, v_result);
-    end = clock();
-    printf("Execution Time: %e sec\n", ((double) (end - start)) / CLOCKS_PER_SEC);
+    printf("Execution Time: %e sec\n", omp_get_wtime() - time);
     printf("\n");
 
     printf("Hadamard Vector Product (parallel)\n");
-    start = clock();
+    time = omp_get_wtime();
     v_hadamard_p(u, v, N, v_result);
-    end = clock();
-    printf("Execution Time: %e sec\n", ((double) (end - start)) / CLOCKS_PER_SEC);
+    printf("Execution Time: %e sec\n", omp_get_wtime() - time);
     printf("\n");
 
     float (*A)[M][N];
@@ -49,22 +54,33 @@ int main(void) {
     float (*m_result)[M][N];
     arr_alloc(M, N, &m_result);
 
+    printf("Matrix Product (serial)\n");
+    time = omp_get_wtime();
+    m_product_s(M, N, *A, M, N, *B, *m_result);
+    printf("Execution Time: %e sec\n", omp_get_wtime() - time);
+    printf("\n");
+    
+    printf("Matrix Product (parallel)\n");
+    time = omp_get_wtime();
+    m_product_p(M, N, *A, M, N, *B, *m_result);
+    printf("Execution Time: %e sec\n", omp_get_wtime() - time);
+    printf("\n");
+
     printf("Hadamard Matrix Product (serial)\n");
-    start = clock();
+    time = omp_get_wtime();
     m_hadamard_s(M, N, *A, *B, *m_result);
-    end = clock();
-    printf("Execution Time: %e sec\n", ((double) (end - start)) / CLOCKS_PER_SEC);
+    printf("Execution Time: %e sec\n", omp_get_wtime() - time);
     printf("\n");
 
     printf("Hadamard Matrix Product (parallel)\n");
-    start = clock();
+    time = omp_get_wtime();
     m_hadamard_p(M, N, *A, *B, *m_result);
-    end = clock();
-    printf("Execution Time: %e sec\n", ((double) (end - start)) / CLOCKS_PER_SEC);
+    printf("Execution Time: %e sec\n", omp_get_wtime() - time);
     printf("\n");
 
     free(A);
     free(B);
+    free(m_result);
 
     return 0;
 }

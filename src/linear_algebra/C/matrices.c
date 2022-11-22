@@ -30,8 +30,26 @@ void m_sub(int m, int n, float A[m][n], float B[m][n], float result[m][n]) {
     }
 }
 
+/* Product of Matrices (serial) */
+void m_product_s(int m1, int n1, float A[m1][n1], int m2, int n2, float B[m2][n2], float result[m1][n2]) {
+    if (n1 != m2) {
+        return;
+    }
+
+    int i, j, k;
+    for (i = 0; i < m1; i++) {
+        for (j = 0; j < n2; j++) {
+            float sum = 0.0;
+            for (k = 0; k < n1; k++) {
+                sum += A[i][k] * B[k][j];
+            }
+            result[i][j] = sum;
+        }
+    }
+}
+
 /* Product of Matrices (parallel) */
-void m_product(int m1, int n1, float A[m1][n1], int m2, int n2, float B[m2][n2], float result[m1][n2]) {
+void m_product_p(int m1, int n1, float A[m1][n1], int m2, int n2, float B[m2][n2], float result[m1][n2]) {
     if (n1 != m2) {
         return;
     }
