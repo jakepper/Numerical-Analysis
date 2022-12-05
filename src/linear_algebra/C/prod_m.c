@@ -2,7 +2,7 @@
     Compiler Instructions:
 
     gcc -c vectors.c matrices.c -fopenmp -O3
-    gcc -o out test.c vectors.o matrices.o -fopenmp -O3
+    gcc -o ts7_vectors.exe test.c vectors.o matrices.o -fopenmp -O3
 */
 
 #include <stdio.h>

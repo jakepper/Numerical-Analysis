@@ -67,3 +67,21 @@ void v_hadamard_p(float u[], float v[], int n, float result[]) {
         result[i] = u[i] * v[i];
     }
 }
+
+void v_outer_s(float u[], float v[], int n, float result[n][n]) {
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            result[i][j] = u[i] * v[j];
+        }
+    }
+}
+
+void v_outer_p(float u[], float v[], int n, float result[n][n]) {
+    int i;
+    #pragma omp parallel for shared(u, v, result) private (i)
+    for (i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            result[i][j] = u[i] * v[j];
+        }
+    }
+}

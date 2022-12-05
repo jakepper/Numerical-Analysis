@@ -13,3 +13,7 @@ void triple(float[], float[], float[], int, float[]);
 void v_hadamard_s(float[], float[], int, float[]);
 
 void v_hadamard_p(float[], float[], int, float[]);
+
+void v_outer_s(float[], float[], int n, float[n][n]);
+
+void v_outer_p(float[], float[], int n, float[n][n]);
