@@ -20,7 +20,7 @@ parallel: m_hadamard_p
 - B : float[m][n]
 - result : float[m][n]
 
-**Output:** A hadamard B : returned in `result`
+**Outputs:** A Hadamard B : stored in `result`
 
 **Usage/Example:**
 
