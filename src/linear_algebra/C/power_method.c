@@ -2,7 +2,7 @@
     Compiler Instructions:
 
     gcc -c vectors.c matrices.c
-    gcc -o ./executables/power.exe power_method.c vectors.o matrices.o -fopenmp -O1 -lm
+    gcc -o ./executables/power256.exe power_method.c vectors.o matrices.o -fopenmp -O1 -lm
 */
 
 #include <stdio.h>
@@ -14,8 +14,8 @@
 #include "matrices.h"
 
 #define LIMIT 10
-#define M 1024
-#define N 1024
+#define M 256
+#define N 256
 #define MAX_ITERS 1000
 
 void print_vector(int n, float[]);
@@ -26,6 +26,7 @@ int rand_lim(int limit);
 void arr_alloc (size_t m, size_t n, float(**aptr)[m][n]);
 
 int main(void) {
+    printf("   M = %d, N = %d\n\n", M, N);
     double time;
 
     float eigen_value;
@@ -40,8 +41,10 @@ int main(void) {
     time = omp_get_wtime();
     eigen_value = power_method_s(M, N, *A, MAX_ITERS, eigen_vector);
     printf("   Execution Time: %e sec\n", omp_get_wtime() - time);
-    // printf("   Eigen Vector: ");
-    // print_vector(N, eigen_vector);
+    if (N < 17) {
+        printf("   Eigen Vector: ");
+        print_vector(N, eigen_vector);
+    }
     printf("   Eigen Value: %f\n", eigen_value);
     printf("\n");
 
@@ -50,8 +53,10 @@ int main(void) {
     time = omp_get_wtime();
     eigen_value = power_method_p(M, N, *A, MAX_ITERS, eigen_vector);
     printf("   Execution Time: %e sec\n", omp_get_wtime() - time);
-    // printf("   Eigen Vector: ");
-    // print_vector(N, eigen_vector);
+    if (N < 17) {
+        printf("   Eigen Vector: ");
+        print_vector(N, eigen_vector);
+    }
     printf("   Eigen Value: %f\n", eigen_value);
     printf("\n");
 

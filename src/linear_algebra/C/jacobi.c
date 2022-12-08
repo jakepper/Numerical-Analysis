@@ -13,10 +13,10 @@
 #include "vectors.h"
 #include "matrices.h"
 
-#define LIMIT 64
-#define M 128
-#define N 128
-#define MAX_ITERS 1000
+#define LIMIT 10
+#define M 3
+#define N 3
+#define MAX_ITERS 25
 
 void print_vector(int n, float[]);
 void gen_vector(int n, float v[]);
@@ -27,36 +27,45 @@ int rand_lim(int limit);
 void arr_alloc (size_t m, size_t n, float(**aptr)[m][n]);
 
 int main(void) {
+    printf("   M = %d, N = %d\n\n", M, N);
     double time;
 
     float (*A)[M][N]; // A
     arr_alloc(M, N, &A);
     gen_matrix(M, N, *A);
-    print_matrix(M, N, *A);
-    printf("\n");
+    if (N < 9) {
+        print_matrix(M, N, *A);
+        printf("\n");
+    }
+   
     
     float x[N]; // x
-    fill_vector(N, x, 1.0);
-    print_vector(N, x);
-    printf("\n");
+    fill_vector(N, x, 1.0); // fill initial approximation with 1.0's
 
     float y[N]; // = y
     gen_vector(N, y);
-    print_vector(N, y);
-    printf("\n");
+    if (N < 9) {
+        print_vector(N, y);
+        printf("\n");
+    }
 
     float (*D)[M][N]; // to hold D inverse
     arr_alloc(M, N, &D);
 
     printf("   jacobi (serial)\n");
     time = omp_get_wtime();
-    jacobi(M, N, *A, x, y, *D, MAX_ITERS);
+    jacobi(N, *A, x, y, *D, MAX_ITERS);
     printf("   Execution Time: %e sec\n", omp_get_wtime() - time);
     printf("   Solution: ");
     print_vector(N, x);
     printf("\n");
 
+    float valid[N];
+    action_s(M, N, *A, x, valid);
+    print_vector(N, valid);
+
     free(A);
+    free(D);
 
     return 0;
 }

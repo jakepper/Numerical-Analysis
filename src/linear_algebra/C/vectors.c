@@ -7,6 +7,7 @@
 float norm(int n, float v[]) {
     double sum = 0;
 
+    #pragma omp parallel for reduction(+:sum)
     for (int i = 0; i < n; i++) {
         sum += v[i] * v[i];
     }

@@ -13,8 +13,8 @@
 #include "matrices.h"
 
 #define LIMIT 10
-#define M 1024
-#define N 1024
+#define M 32
+#define N 32
 
 void print_matrix(int m, int n, float[m][n]);
 void gen_matrix(int m, int n, float A[m][n]);
@@ -23,35 +23,28 @@ void arr_alloc_2 (size_t m, size_t n, float(**aptr)[m][n]);
 void arr_alloc_4 (size_t a, size_t b, size_t c, size_t d, float(**aptr)[a][b][c][d]);
 
 int main(void) {
+    printf("   M = %d, N = %d\n\n", M, N);
     double time;
 
-    float (*A)[M][N];
-    arr_alloc_2(M, N, &A);
-    gen_matrix(M, N, *A);
+    float A[M][N];
+    gen_matrix(M, N, A);
 
-    float (*B)[M][N];
-    arr_alloc_2(M, N, &B);
-    gen_matrix(M, N, *B);
+    float B[M][N];
+    gen_matrix(M, N, B);
 
-    float (*result)[N][M][N] = malloc(sizeof(*result) * M);
-    // arr_alloc_4(M, N, M, N, &result);
-    assert(*result != NULL);
+    float (result)[M][N][M][N];
 
     printf("   Kronecker Product (serial)\n");
     time = omp_get_wtime();
-    kronecker_s(M, N, *A, M, N, *B, result);
+    kronecker_s(M, N, A, M, N, B, result);
     printf("   Execution Time: %e sec\n", omp_get_wtime() - time);
     printf("\n");
 
     printf("   Kronecker Product (parallel)\n");
     time = omp_get_wtime();
-    kronecker_p(M, N, *A, M, N, *B, result);
+    kronecker_p(M, N, A, M, N, B, result);
     printf("   Execution Time: %e sec\n", omp_get_wtime() - time);
     printf("\n");
-
-    free(A);
-    free(B);
-    free(result);
 
     return 0;
 }

@@ -9,6 +9,7 @@ __pycache__/
 *.a
 temp/
 *.exe
+openMP/
 
 # Distribution / packaging
 .Python

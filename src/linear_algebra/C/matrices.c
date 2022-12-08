@@ -4,6 +4,8 @@
 #include "omp.h"
 #include <math.h>
 
+#include <stdio.h>
+void printv(int n, float[]);
 
 /* Matrix-Vector Product (serial) */
 void action_s(int m, int n, float A[m][n], float b[n], float result[n]) {
@@ -19,10 +21,9 @@ void action_s(int m, int n, float A[m][n], float b[n], float result[n]) {
 /* Matrix-Vector Product (parallel) */
 void action_p(int m, int n, float A[m][n], float b[n], float result[n]) {
     int i;
-    #pragma omp parallel
+    #pragma omp parallel for collapse(1)
     for (i = 0; i < m; i++) {
         float sum = 0.0;
-        #pragma omp parallel for reduction(+:sum)
         for (int j = 0; j < n; j++) {
             sum += A[i][j] * b[j];
         }
@@ -136,6 +137,10 @@ void kronecker_p(int m1, int n1, float A[m1][n1], int m2, int n2, float B[m2][n2
     }
 }
 
+float power_method(int m, int n, float A[m][n], int max_iters, float approx[n]) {
+
+}
+
 float power_method_s(int m, int n, float A[m][n], int max_iters, float approx[n]) {
     float Ab[n];
 
@@ -174,25 +179,30 @@ float power_method_p(int m, int n, float A[m][n], int max_iters, float approx[n]
     return num / den; // return eigenvalue | approximate eigenvector is stored in approx
 }
 
-void jacobi(int m, int n, float A[m][n], float x[n], float y[n], float D[m][n], int iters) {
+void jacobi(int n, float A[n][n], float x[n], float y[n], float D[n][n], int iters) {
     // create D inverse
-    for (int i = 0; i < m; i++) {
-        for (int j = 0; j < n; j++) {
-            if (i == j) {
-                D[i][j] = 1.0 / A[i][j];
-                A[i][j] = 0.0; // remove diagonal from A
-            }
-        }
+    for (int i = 0; i < n; i++) {
+        D[i][i] = 1.0 / A[i][i]; // place inverse of diagonal value in D
+        A[i][i] = 0.0; // remove diagonal from A to create (L + U)
     }
 
+    float temp1[n], temp2[n];
     for (int i = 0; i < iters; i++) {
-        float temp1[n];
-        action_p(m, n, A, x, temp1); // (L + U)x
-        float temp2[n];
+        printv(n, x);
+        action_s(n, n, A, x, temp1); // (L + U)x
         v_sub(y, temp1, n, temp2); // y - (L + U)x
-        action_p(m, n, D, temp2, x); // D^(-1)[y - (L + U)x]
+        action_s(n, n, D, temp2, x); // D^(-1)[y - (L + U)x]
+
 
         // check for convergence???
+        // if (allclose(n, x, x_prev, 1e-6)) {
+        //     break;
+        // }
+    }
+
+    // Revert changes made to A
+    for (int i = 0; i < n; i++) {
+        A[i][i] = 1.0 / D[i][i]; // remove diagonal from A
     }
 }
 
@@ -207,4 +217,11 @@ int allclose(int n, float a[], float b[], float tol) {
     }
 
     return close;
+}
+
+void printv(int n, float v[]) {
+    for (int i = 0; i < n; i++) {
+        printf("%f ", v[i]);
+    }
+    printf("\n");
 }
