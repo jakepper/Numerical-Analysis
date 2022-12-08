@@ -1,28 +1,31 @@
 # Action of Matrix on Vector
 
-**Routine Name:** action
+**Routine Name:** 
+
+serial: action_s
+
+parallel: action_p
 
 **Author:** Jake Epperson
 
-**Language:** Python
+**Language:** C
 
 **Description/Purpose:** Computes the action of matrix A applied to vector b
 
 **Inputs:**
 
-- A : numpy array (matrix)
-- b : numpy array (vector)
+- m : int - rows
+- n : int - columns
+- A : float[m][n]
+- b : float[n]
+- result : float[n]
 
-**Output:** A * b : numpy array (vector)
+**Output:** A * b : returned in `result`
 
 **Usage/Example:**
- 
-    A = np.array([[1, 2, 3], [1, 2, 3], [1, 2, 3]])
-    b = np.array([2, 2, 2])
-    print(matrices.action(A, b))
 
 Output:
+```
+```
 
-    [12. 12. 12.]
-
-**Implementation/Code:** [matrices.py](../../../src/linear_algebra/matrices.py)
+**Implementation/Code:** [matrices.c](../../../../src/linear_algebra/C/matrices.c)

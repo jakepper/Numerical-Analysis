@@ -1,8 +1,8 @@
 /*
     Compiler Instructions:
 
-    gcc -c vectors.c matrices.c -fopenmp -O3
-    gcc -o had_v.exe had_v.c vectors.o matrices.o -fopenmp -O3
+    gcc -c vectors.c matrices.c -fopenmp -O1
+    gcc -o ./executables/had_v.exe had_v.c vectors.o matrices.o -fopenmp -O1 -lm
 */
 
 #include <stdio.h>
@@ -22,6 +22,7 @@ int rand_lim(int limit);
 void gen_vector(int n, float v[]);
 
 int main(void) {
+    printf("   M = %d, N = %d\n\n", M, N);
     double time;
 
     float u[N];

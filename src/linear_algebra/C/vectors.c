@@ -1,5 +1,18 @@
 #include "vectors.h"
+
 #include "omp.h"
+#include <math.h>
+
+
+float norm(int n, float v[]) {
+    double sum = 0;
+
+    for (int i = 0; i < n; i++) {
+        sum += v[i] * v[i];
+    }
+
+    return (float) sqrt(sum);
+}
 
 /* Vector Addition */
 void v_add(float u[], float v[], int n, float result[]) {    
@@ -15,21 +28,30 @@ void v_sub(float u[], float v[], int n, float result[]) {
     }
 }
 
-/* Vector Multiplication by Scalar */
-void v_mult(float v[], float c, int n, float result[]) {
+/* Vector Multiplication by Scalar (serial) */
+void v_mult_s(float v[], float c, int n, float result[]) {
     for (int i = 0; i < n; i++) {
         result[i] = v[i] * c;
     }
 }
 
+/* Vector Multiplication by Scalar (parallel) */
+void v_mult_p(float v[], float c, int n, float result[]) {
+    int i;
+    #pragma omp parallel for
+    for (i = 0; i < n; i++) {
+        result[i] = v[i] * c;
+    }
+}
+
 /* Vector Dot Product */
-void dot(float u[], float v[], int n, float result) {
+float dot(float u[], float v[], int n) {
     float sum = 0;
     for (int i = 0; i < n; i++) {
         sum += u[i] * v[i];
     }
 
-    result = sum;
+    return sum;
 }
 
 /* Vector Cross Product */
@@ -62,7 +84,7 @@ void v_hadamard_s(float u[], float v[], int n, float result[]) {
 
 void v_hadamard_p(float u[], float v[], int n, float result[]) {
     int i;
-    #pragma omp parallel for shared(u, v, result) private(i)
+    #pragma omp parallel for
     for (i = 0; i < n; i++) {
         result[i] = u[i] * v[i];
     }
@@ -77,10 +99,10 @@ void v_outer_s(float u[], float v[], int n, float result[n][n]) {
 }
 
 void v_outer_p(float u[], float v[], int n, float result[n][n]) {
-    int i;
-    #pragma omp parallel for shared(u, v, result) private (i)
+    int i, j;
+    #pragma omp parallel for collapse(2)
     for (i = 0; i < n; i++) {
-        for (int j = 0; j < n; j++) {
+        for (j = 0; j < n; j++) {
             result[i][j] = u[i] * v[j];
         }
     }

@@ -4,27 +4,25 @@
 
 **Author:** Jake Epperson
 
-**Language:** Python
+**Language:** C
 
-**Description/Purpose:** Computes the cross product of two vectors
+**Description/Purpose:** Computes the cross product of two vectors u, v
 
 Important: Only works for vectors $u,v \epsilon R^3$
 
 **Inputs:**
 
-- u : numpy array of size 3 (vector)
-- v : numpy array of size 3 (vector)
+- u : float[]
+- v : float[]
+- n : int - size
+- result : float[]
 
-**Output:** u x v : numpy array (vector)
+**Output:** u x v : stored in `result`
 
 **Usage/Example:**
- 
-    u = np.array([2, 3, 4])
-    v = np.array([5, 6, 7])
-    print(vectors.cross(u, v))
 
 Output:
+```
+```
 
-    [-3. 6. -3.]
-
-**Implementation/Code:** [vectors.py](../../../src/linear_algebra/vectors.py)
+**Implementation/Code:** [vectors.c](../../../../src/linear_algebra/C/vectors.c)

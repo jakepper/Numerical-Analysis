@@ -1,30 +1,27 @@
 # Matrix Addition
 
-**Routine Name:** add
+**Routine Name:** m_add
 
 **Author:** Jake Epperson
 
-**Language:** Python
+**Language:** C
 
-**Description/Purpose:** Adds two matrices together
+**Description/Purpose:** Computes the addition of matrices A and B
 
 **Inputs:**
 
-- A : numpy array (matrix)
-- B : numpy array (matrix)
+- m : int - rows
+- n : int - columns
+- A : float[m][n]
+- B : float[m][n]
+- result : float[m][n]
 
-**Output:** A + B : numpy array (matrix)
+**Output:** A + B : returned in `result`
 
 **Usage/Example:**
- 
-    A = np.array([[1, 2, 3], [1, 2, 3], [1, 2, 3]])
-    B = np.array([[3, 2, 1], [3, 2, 1], [3, 2, 1]])
-    print(matrices.add(A, B))
 
 Output:
+```
+```
 
-    [[4. 4. 4.]
-    [4. 4. 4.]
-    [4. 4. 4.]]
-
-**Implementation/Code:** [matrices.py](../../../src/linear_algebra/matrices.py)
+**Implementation/Code:** [matrices.c](../../../../src/linear_algebra/C/matrices.c)

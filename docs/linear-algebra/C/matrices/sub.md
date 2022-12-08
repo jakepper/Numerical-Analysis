@@ -1,30 +1,27 @@
 # Matrix Subtraction
 
-**Routine Name:** sub
+**Routine Name:** m_sub
 
 **Author:** Jake Epperson
 
-**Language:** Python
+**Language:** C
 
-**Description/Purpose:** Subtracts one matrix from another
+**Description/Purpose:** Computes subtraction of matrix B from A
 
 **Inputs:**
 
-- A : numpy array (matrix)
-- B : numpy array (matrix)
+- m : int - rows
+- n : int - columns
+- A : float[m][n]
+- B : float[m][n]
+- result : float[m][n]
 
-**Output:** A - B : numpy array (matrix)
+**Output:** A - B : returned in `result`
 
 **Usage/Example:**
- 
-    A = np.array([[1, 2, 3], [1, 2, 3], [1, 2, 3]])
-    B = np.array([[3, 2, 1], [3, 2, 1], [3, 2, 1]])
-    print(matrices.sub(A, B))
 
 Output:
+```
+```
 
-    [[-2.  0.  2.]
-    [-2.  0.  2.]
-    [-2.  0.  2.]]
-
-**Implementation/Code:** [matrices.py](../../../src/linear_algebra/matrices.py)
+**Implementation/Code:** [matrices.c](../../../../src/linear_algebra/C/matrices.c)

@@ -1,8 +1,8 @@
 /*
     Compiler Instructions:
 
-    gcc -c vectors.c matrices.c -fopenmp -O3
-    gcc -o had_m.exe had_m.c vectors.o matrices.o -fopenmp -O3
+    gcc -c vectors.c matrices.c -fopenmp -O1
+    gcc -o ./executables/had_m.exe had_m.c vectors.o matrices.o -fopenmp -O1 -lm
 */
 
 #include <stdio.h>
@@ -23,6 +23,7 @@ void gen_matrix(int m, int n, float A[m][n]);
 void arr_alloc (size_t m, size_t n, float(**aptr)[m][n]);
 
 int main(void) {
+    printf("   M = %d, N = %d\n\n", M, N);
     double time;
 
     float (*A)[M][N];

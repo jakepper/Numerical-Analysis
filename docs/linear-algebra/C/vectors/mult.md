@@ -1,28 +1,30 @@
-# Scalar Vector Multiplication
+# Vector Scalar Multiplication
 
-**Routine Name:** cross
+**Routine Name:** 
+
+serial: v_mult_s
+
+parallel: v_mult_p
 
 **Author:** Jake Epperson
 
-**Language:** Python
+**Language:** C
 
-**Description/Purpose:** Computes
+**Description/Purpose:** Computes a scalar-vector product
 
 **Inputs:**
 
-- c : constant value
-- v : numpy array (vector)
+- v : float[]
+- c : float
+- n : int - size
+- result : float[]
 
-**Output:** c * v : numpy array (vector)
+**Output:** c * v : stored in `result`
 
 **Usage/Example:**
- 
-    c = 2
-    v = np.array([2, 3, 4])
-    print(vectors.mult(c, v))
 
 Output:
+```
+```
 
-    [4. 6. 8.]
-
-**Implementation/Code:** [vectors.py](../../../src/linear_algebra/vectors.py)
+**Implementation/Code:** [vectors.c](../../../../src/linear_algebra/C/vectors.c)

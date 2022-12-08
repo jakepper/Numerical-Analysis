@@ -1,29 +1,24 @@
-# Vector Normalization
+# Vector Norm
 
-**Routine Name:** dot
+**Routine Name:** norm
 
 **Author:** Jake Epperson
 
-**Language:** Python
+**Language:** C
 
-**Description/Purpose:** Computes the p-norm of a vector using the following formula,
-
-$ |v|_p = ( \sum |v_i|^p )^{1/p} $
+**Description/Purpose:** Computes the euclidean norm of a vector
 
 **Inputs:**
 
-- v : numpy array (vector)
-- p : specifies norm to compute
+- v : float[]
+- n : int - size
 
-**Output:** u $\cdot$ p-norm : number
+**Output:** ||v|| : returned
 
 **Usage/Example:**
- 
-    v = np.array([1, 2, 3])
-    print(vectors.norm(v, 2))
 
 Output:
+```
+```
 
-    3.741657
-
-**Implementation/Code:** [vectors.py](../../../src/linear_algebra/vectors.py)
+**Implementation/Code:** [vectors.c](../../../../src/linear_algebra/C/vectors.c)

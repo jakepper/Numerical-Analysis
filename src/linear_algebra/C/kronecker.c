@@ -2,7 +2,7 @@
     Compiler Instructions:
 
     gcc -c vectors.c matrices.c -fopenmp -O1
-    gcc -o ./executables/mat_prod.exe mat_prod.c vectors.o matrices.o -fopenmp -O1 -lm
+    gcc -o ./executables/kronecker.exe kronecker.c matrices.o vectors.o -fopenmp -O1 -lm
 */
 
 #include <stdio.h>
@@ -10,7 +10,6 @@
 #include <assert.h>
 #include <omp.h>
 
-#include "vectors.h"
 #include "matrices.h"
 
 #define LIMIT 10
@@ -18,40 +17,53 @@
 #define N 1024
 
 void print_matrix(int m, int n, float[m][n]);
-int rand_lim(int limit);
 void gen_matrix(int m, int n, float A[m][n]);
-void arr_alloc (size_t m, size_t n, float(**aptr)[m][n]);
+int rand_lim(int limit);
+void arr_alloc_2 (size_t m, size_t n, float(**aptr)[m][n]);
+void arr_alloc_4 (size_t a, size_t b, size_t c, size_t d, float(**aptr)[a][b][c][d]);
 
 int main(void) {
-    printf("   M = %d, N = %d\n\n", M, N);
     double time;
 
     float (*A)[M][N];
-    arr_alloc(M, N, &A);
-    float (*B)[M][N];
-    arr_alloc(M, N, &B);
+    arr_alloc_2(M, N, &A);
     gen_matrix(M, N, *A);
-    gen_matrix(M, N, *B);
-    float (*m_result)[M][N];
-    arr_alloc(M, N, &m_result);
 
-    printf("   Matrix Product (serial)\n");
+    float (*B)[M][N];
+    arr_alloc_2(M, N, &B);
+    gen_matrix(M, N, *B);
+
+    float (*result)[N][M][N] = malloc(sizeof(*result) * M);
+    // arr_alloc_4(M, N, M, N, &result);
+    assert(*result != NULL);
+
+    printf("   Kronecker Product (serial)\n");
     time = omp_get_wtime();
-    m_product_s(M, N, *A, M, N, *B, *m_result);
+    kronecker_s(M, N, *A, M, N, *B, result);
     printf("   Execution Time: %e sec\n", omp_get_wtime() - time);
     printf("\n");
 
-    printf("   Matrix Product (parallel)\n");
+    printf("   Kronecker Product (parallel)\n");
     time = omp_get_wtime();
-    m_product_p(M, N, *A, M, N, *B, *m_result);
+    kronecker_p(M, N, *A, M, N, *B, result);
     printf("   Execution Time: %e sec\n", omp_get_wtime() - time);
     printf("\n");
 
     free(A);
     free(B);
-    free(m_result);
+    free(result);
 
     return 0;
+}
+
+void print_matrix(int m, int n, float A[m][n]) {
+    for (int i = 0; i < m; i++) {
+        for (int j = 0; j < n; j++) {
+            printf("%.1f  ", A[i][j]);
+        }
+        printf("\n");
+    }
+    printf("\n");
 }
 
 void gen_matrix(int m, int n, float A[m][n]) {
@@ -73,18 +85,13 @@ int rand_lim(int limit) {
     return retval;
 }
 
-void print_matrix(int m, int n, float A[m][n]) {
-    for (int i = 0; i < m; i++) {
-        for (int j = 0; j < n; j++) {
-            printf("%.1f  ", A[i][j]);
-        }
-        printf("\n");
-    }
-    printf("\n");
-}
-
-void arr_alloc (size_t m, size_t n, float(**aptr)[m][n])
+void arr_alloc_2 (size_t m, size_t n, float(**aptr)[m][n])
 {
   *aptr = malloc(sizeof(float[m][n]) ); // allocate a true 2D array
   assert(*aptr != NULL);
+}
+
+void arr_alloc_4(size_t a, size_t b, size_t c, size_t d, float(**aptr)[a][b][c][d]) {
+    *aptr = malloc(sizeof(float[a][b][c][d]) ); // allocate a true 2D array
+    assert(*aptr != NULL);
 }

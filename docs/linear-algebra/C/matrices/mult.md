@@ -1,30 +1,31 @@
 # Matrix Multiplication
 
-**Routine Name:** mult
+**Routine Name:** 
+
+serial: m_product_s
+
+parallel: m_product_p
 
 **Author:** Jake Epperson
 
-**Language:** Python
+**Language:** C
 
-**Description/Purpose:** Multiplies two matrices together
+**Description/Purpose:** Computes the product of two matrices A and B
 
 **Inputs:**
 
-- A : numpy array (matrix)
-- B : numpy array (matrix)
+- m : int - rows
+- n : int - columns
+- A : float[m][n]
+- B : float[m][n]
+- result : float[m][n]
 
-**Output:** A * B : numpy array (matrix)
+**Output:** A * B : returned in `result`
 
 **Usage/Example:**
- 
-    A = np.array([[1, 2, 3], [1, 2, 3], [1, 2, 3]])
-    B = np.array([[3, 2, 1], [3, 2, 1], [3, 2, 1]])
-    print(matrices.mult(A, B))
 
 Output:
+```
+```
 
-    [[3. 4. 3.]
-    [3. 4. 3.]
-    [3. 4. 3.]]
-
-**Implementation/Code:** [matrices.py](../../../src/linear_algebra/matrices.py)
+**Implementation/Code:** [matrices.c](../../../../src/linear_algebra/C/matrices.c)

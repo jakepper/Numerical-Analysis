@@ -1,28 +1,26 @@
 # Vector Addition
 
-**Routine Name:** add
+**Routine Name:** v_add
 
 **Author:** Jake Epperson
 
-**Language:** Python
+**Language:** C
 
 **Description/Purpose:** Adds two vectors of appropriate size together
 
 **Inputs:**
 
-- u : numpy array (vector)
-- v : numpy array (vector)
+- u : float[]
+- v : float[]
+- n : int - size
+- result : float[]
 
-**Output:** u + v : numpy array (vector)
+**Output:** u + v : stored in `result`
 
 **Usage/Example:**
- 
-    u = np.array([1, 2, 3])
-    v = np.array([3, 2, 1])
-    print(vectors.add(u, v))
 
 Output:
+```
+```
 
-    [4. 4. 4.]
-
-**Implementation/Code:** [vectors.py](../../../src/linear_algebra/vectors.py)
+**Implementation/Code:** [vectors.c](../../../../src/linear_algebra/C/vectors.c)

@@ -1,8 +1,8 @@
 /*
     Compiler Instructions:
 
-    gcc -c vectors.c matrices.c -fopenmp -O3
-    gcc -o ./executables/outer.exe outer.c vectors.o matrices.o -fopenmp -O3 -lm
+    gcc -c vectors.c matrices.c
+    gcc -o ./executables/jacobi.exe jacobi.c vectors.o matrices.o -fopenmp -O1 -lm
 */
 
 #include <stdio.h>
@@ -13,49 +13,57 @@
 #include "vectors.h"
 #include "matrices.h"
 
-#define LIMIT 10
-#define M 2048
-#define N 2048
+#define LIMIT 64
+#define M 128
+#define N 128
+#define MAX_ITERS 1000
 
 void print_vector(int n, float[]);
 void gen_vector(int n, float v[]);
+void fill_vector(int n, float v[], float value);
 void print_matrix(int m, int n, float[m][n]);
 void gen_matrix(int m, int n, float A[m][n]);
 int rand_lim(int limit);
 void arr_alloc (size_t m, size_t n, float(**aptr)[m][n]);
 
 int main(void) {
-    printf("   M = %d, N = %d\n\n", M, N);
     double time;
 
-    float u[N];
-    float v[N];
-    gen_vector(N, u);
-    gen_vector(N, v);
-
-    float (*m_result)[M][N];
-    arr_alloc(M, N, &m_result);
-
-    printf("   Vector Outer Product (serial)\n");
-    time = omp_get_wtime();
-    v_outer_s(u, v, N, *m_result);
-    printf("   Execution Time: %e sec\n", omp_get_wtime() - time);
+    float (*A)[M][N]; // A
+    arr_alloc(M, N, &A);
+    gen_matrix(M, N, *A);
+    print_matrix(M, N, *A);
+    printf("\n");
+    
+    float x[N]; // x
+    fill_vector(N, x, 1.0);
+    print_vector(N, x);
     printf("\n");
 
-    printf("   Vector Outer Product (parallel)\n");
-    time = omp_get_wtime();
-    v_outer_p(u, v, N, *m_result);
-    printf("   Execution Time: %e sec\n", omp_get_wtime() - time);
+    float y[N]; // = y
+    gen_vector(N, y);
+    print_vector(N, y);
     printf("\n");
 
-    free(m_result);
+    float (*D)[M][N]; // to hold D inverse
+    arr_alloc(M, N, &D);
+
+    printf("   jacobi (serial)\n");
+    time = omp_get_wtime();
+    jacobi(M, N, *A, x, y, *D, MAX_ITERS);
+    printf("   Execution Time: %e sec\n", omp_get_wtime() - time);
+    printf("   Solution: ");
+    print_vector(N, x);
+    printf("\n");
+
+    free(A);
 
     return 0;
 }
 
 void print_vector(int n, float v[]) {
     for (int i = 0; i < n; i++) {
-        printf("%.1f  ", v[i]);
+        printf("%f  ", v[i]);
     }
     printf("\n");
 }
@@ -66,10 +74,16 @@ void gen_vector(int n, float v[]) {
     }
 }
 
+void fill_vector(int n, float v[], float value) {
+    for (int i = 0; i < n; i++) {
+        v[i] = value;
+    }
+}
+
 void print_matrix(int m, int n, float A[m][n]) {
     for (int i = 0; i < m; i++) {
         for (int j = 0; j < n; j++) {
-            printf("%.1f  ", A[i][j]);
+            printf("%f  ", A[i][j]);
         }
         printf("\n");
     }
