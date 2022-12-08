@@ -4,8 +4,6 @@
 #include "omp.h"
 #include <math.h>
 
-#include <stdio.h>
-void printv(int n, float[]);
 
 /* Matrix-Vector Product (serial) */
 void action_s(int m, int n, float A[m][n], float b[n], float result[n]) {
@@ -188,7 +186,6 @@ void jacobi(int n, float A[n][n], float x[n], float y[n], float D[n][n], int ite
 
     float temp1[n], temp2[n];
     for (int i = 0; i < iters; i++) {
-        printv(n, x);
         action_s(n, n, A, x, temp1); // (L + U)x
         v_sub(y, temp1, n, temp2); // y - (L + U)x
         action_s(n, n, D, temp2, x); // D^(-1)[y - (L + U)x]
@@ -217,11 +214,4 @@ int allclose(int n, float a[], float b[], float tol) {
     }
 
     return close;
-}
-
-void printv(int n, float v[]) {
-    for (int i = 0; i < n; i++) {
-        printf("%f ", v[i]);
-    }
-    printf("\n");
 }

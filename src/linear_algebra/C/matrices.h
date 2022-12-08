@@ -16,4 +16,4 @@ void kronecker_p(int m1, int n1, float[m1][n1], int m2, int n2, float[m2][n2], f
 float power_method_s(int m, int n, float[m][n], int, float[n]);
 float power_method_p(int m, int n, float[m][n], int, float[n]);
 
-void jacobi(int m, int n, float[m][n], float[n], float[n], float[m][n], int);
+void jacobi(int n, float[n][n], float[n], float[n], float[n][n], int);

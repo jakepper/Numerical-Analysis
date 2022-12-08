@@ -19,7 +19,7 @@ def task_34():
     subprocess.run(["./src/linear_algebra/C/executables/power256.exe"]) # run power256.exe
 
 def task_5():
-    print("Task 5: Jacobi Iterative Scheme for Linear Systems (serial/parallel)\n")
+    print("Task 5: Jacobi Iterative Scheme for Linear Systems\n")
     subprocess.run(["./src/linear_algebra/C/executables/jacobi.exe"]) # run jacobi.exe
 
 FUNCTIONS = {
