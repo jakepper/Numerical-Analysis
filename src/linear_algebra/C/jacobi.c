@@ -19,15 +19,6 @@
 #define N 128
 #define MAX_ITERS 400
 
-void print_vector(int n, double[]);
-void gen_vector(int n, double v[]);
-void fill_vector(int n, double v[], double value);
-void print_matrix(int m, int n, double[m][n]);
-void gen_matrix(int m, int n, double A[m][n]);
-void scale_diag(int c, double A[N][N]);
-int rand_lim(int limit);
-void arr_alloc (size_t m, size_t n, double(**aptr)[m][n]);
-
 int main(void) {
     /* Intializes random number generator */
     time_t t;
@@ -40,14 +31,9 @@ int main(void) {
     arr_alloc(M, N, &A);
     gen_matrix(M, N, *A);
     scale_diag(N * 2, *A);
-    if (N < 17) {
-        printf("   A: ");
-        print_matrix(M, N, *A);
-        printf("\n");
-    }
    
-    double x[N]; // x
-    fill_vector(N * 2, x, 1.0); // fill initial approximation with 1.0's
+    double approx[N]; // x
+    gen_vector(N, approx); // random approximation of eigenvector
 
     double y[N]; // = y
     gen_vector(N, y);
@@ -60,7 +46,7 @@ int main(void) {
 
     printf("   jacobi (serial)\n");
     time = omp_get_wtime();
-    jacobi(N, *A, x, y, *D, MAX_ITERS);
+    jacobi(N, *A, approx, y, *D, MAX_ITERS);
     printf("   Execution Time: %e sec\n", omp_get_wtime() - time);
     printf("   Solution (x): ");
     print_vector(N, x);

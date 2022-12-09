@@ -1,6 +1,10 @@
 # Power Method
 
-**Routine Name:** jacobi
+**Routine Name:** 
+
+serial : jacobi
+
+parallel : jacobi_p
 
 **Author:** Jake Epperson
 
@@ -21,7 +25,7 @@
 
 **Output:** 
 
-- eigenvector : stored in `approx`
+- eigenvector : stored in `x`
 
 - eigenvalue : returned
 

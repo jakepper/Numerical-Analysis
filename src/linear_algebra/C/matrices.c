@@ -1,8 +1,10 @@
 #include "matrices.h"
 #include "vectors.h"
+#include "arrays.h"
 
 #include "omp.h"
 #include <math.h>
+#include <stdlib.h>
 
 
 /* Matrix-Vector Product (serial) */
@@ -135,10 +137,6 @@ void kronecker_p(int m1, int n1, double A[m1][n1], int m2, int n2, double B[m2][
     }
 }
 
-double power_method(int m, int n, double A[m][n], int max_iters, double approx[n]) {
-
-}
-
 /* Serial Power Method */
 double power_method_s(int m, int n, double A[m][n], int max_iters, double approx[n]) {
     double Ab[n];
@@ -151,9 +149,7 @@ double power_method_s(int m, int n, double A[m][n], int max_iters, double approx
 
     // compute eigenvalue
     action_s(m, n, A, approx, Ab);
-
     double num = dot(approx, Ab, n);
-
     double den = dot(approx, approx, n);
 
     return num / den; // return eigenvalue | approximate eigenvector is stored in approx
@@ -171,27 +167,142 @@ double power_method_p(int m, int n, double A[m][n], int max_iters, double approx
 
     // compute eigenvalue
     action_p(m, n, A, approx, Ab);
-
     double num = dot(approx, Ab, n);
-
     double den = dot(approx, approx, n);
 
     return num / den; // return eigenvalue | approximate eigenvector is stored in approx
 }
 
+/* Inverse Power Method */
+double inverse_power(int n, double A[n][n], double approx[n], int max_iters) {
+    double sol[n]; // temp
+
+    double (*D)[n][n]; // for jacobi
+    arr_alloc(n, n, &D);
+
+    // iterate
+    for (int i = 0; i < max_iters; i++) {
+        fill_vector(n, sol, 1.0);
+        jacobi(n, A, sol, approx, *D, max_iters); // solve A*b_k+1 = b_k
+        v_mult_s(sol, 1.0 / norm(n, sol), n, approx); // normalize : update approximation of eigen vector
+    }
+
+    // compute eigenvalue
+    action_p(n, n, A, approx, sol);
+    double num = dot(approx, sol, n);
+    double den = dot(approx, approx, n);
+
+    free(D);
+
+    return num / den; // return eigenvalue | approximate eigenvector is stored in appprox
+}
+
+/* Shifted Inverse Power Method (serial) */
+double inverse_power_shift(int n, double A[n][n], double approx[n], double shift, int max_iters) {
+    double sol[n];
+
+    double (*D)[n][n]; // for jacobi
+    arr_alloc(n, n, &D);
+
+    double (*sI)[n][n]; // (shift * I) where I is the identity matrix
+    arr_alloc(n, n, &sI);
+    for (int i = 0; i < n; i++) {
+        *sI[i][i] = shift;
+    }
+
+    double (*B)[n][n]; // B = (A - shift * I)
+    arr_alloc(n, n, &B);
+    m_sub(n, n, A, *sI, *B);
+
+    // iterate
+    for (int i = 0; i < max_iters; i++) {
+        fill_vector(n, sol, 1.0);
+        jacobi(n, *B, sol, approx, *D, max_iters); // solve B*b_k+1 = b_k
+        v_mult_s(sol, 1.0 / norm(n, sol), n, approx); // normalize : update approximation of eigen vector
+    }
+
+    // compute eigenvalue
+    action_s(n, n, A, approx, sol);
+    double num = dot(approx, sol, n);
+    double den = dot(approx, approx, n);
+
+    free(D);
+    free(sI);
+    free(B);
+
+    return num / den; // return eigenvalue | approximate eigenvector is stored in appprox
+}
+
+/* Shifted Inverse Power Method (parallel) */
+double inverse_power_shift_p(int n, double A[n][n], double approx[n], double shift, int max_iters) {
+    double sol[n];
+
+    double (*D)[n][n]; // for jacobi
+    arr_alloc(n, n, &D);
+
+    double (*sI)[n][n]; // (shift * I) where I is the identity matrix
+    arr_alloc(n, n, &sI);
+    for (int i = 0; i < n; i++) {
+        *sI[i][i] = shift;
+    }
+
+    double (*B)[n][n]; // B = (A - shift * I)
+    arr_alloc(n, n, &B);
+    m_sub(n, n, A, *sI, *B);
+
+    // iterate
+    for (int i = 0; i < max_iters; i++) {
+        fill_vector(n, sol, 1.0);
+        jacobi_p(n, *B, sol, approx, *D, max_iters); // solve B*b_k+1 = b_k
+        v_mult_p(sol, 1.0 / norm(n, sol), n, approx); // normalize : update approximation of eigen vector
+    }
+
+    // compute eigenvalue
+    action_p(n, n, A, approx, sol);
+    double num = dot(approx, sol, n);
+    double den = dot(approx, approx, n);
+
+    free(D);
+    free(sI);
+    free(B);
+
+    return num / den; // return eigenvalue | approximate eigenvector is stored in appprox
+}
+
 /* Jacobi Iteration */
 void jacobi(int n, double A[n][n], double x[n], double y[n], double D[n][n], int iters) {
-    // create D inverse
+    // initialize D inverse
     for (int i = 0; i < n; i++) {
         D[i][i] = 1.0 / A[i][i]; // place inverse of diagonal value in D
         A[i][i] = 0.0; // remove diagonal from A to create (L + U)
     }
 
-    double temp1[n], temp2[n], x_prev[n];
+    double temp1[n], temp2[n];
     for (int i = 0; i < iters; i++) {
         action_s(n, n, A, x, temp1); // (L + U)x
         v_sub(y, temp1, n, temp2); // y - (L + U)x
         action_s(n, n, D, temp2, x); // D^(-1)[y - (L + U)x]
+    }
+
+    // Revert changes made to A
+    for (int i = 0; i < n; i++) {
+        A[i][i] = 1.0 / D[i][i];
+    }
+}
+
+/* Jacobi Iteration */
+void jacobi_p(int n, double A[n][n], double x[n], double y[n], double D[n][n], int iters) {
+    // initialize D inverse
+    for (int i = 0; i < n; i++) {
+        D[i][i] = 1.0 / A[i][i]; // place inverse of diagonal value in D
+        A[i][i] = 0.0; // remove diagonal from A to create (L + U)
+    }
+
+    double temp1[n], temp2[n];
+    for (int i = 0; i < iters; i++) {
+        action_p(n, n, A, x, temp1); // (L + U)x
+        v_sub(y, temp1, n, temp2); // y - (L + U)x
+        action_p(n, n, D, temp2, x); // D^(-1)[y - (L + U)x]
     }
 
     // Revert changes made to A

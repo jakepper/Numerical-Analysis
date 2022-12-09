@@ -16,4 +16,9 @@ void kronecker_p(int m1, int n1, double[m1][n1], int m2, int n2, double[m2][n2],
 double power_method_s(int m, int n, double[m][n], int, double[n]);
 double power_method_p(int m, int n, double[m][n], int, double[n]);
 
+double inverse_power(int n, double[n][n], double[n], int);
+double inverse_power_shift(int n, double[n][n], double[n], double, int);
+double inverse_power_shift_p(int n, double[n][n], double[n], double, int);
+
 void jacobi(int n, double[n][n], double[n], double[n], double[n][n], int);
+void jacobi_p(int n, double[n][n], double[n], double[n], double[n][n], int);
