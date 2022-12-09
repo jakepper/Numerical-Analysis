@@ -16,9 +16,9 @@ parallel: action_p
 
 - m : int - rows
 - n : int - columns
-- A : float[m][n]
-- b : float[n]
-- result : float[n]
+- A : double[m][n]
+- b : double[n]
+- result : double[n]
 
 **Output:** A * b : returned in `result`
 

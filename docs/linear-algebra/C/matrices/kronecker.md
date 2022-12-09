@@ -16,11 +16,11 @@ parallel: m_kronecker_p
 
 - m1 : int - rows
 - n1 : int - columns
-- A : float[m1][n1]
+- A : double[m1][n1]
 - m2 : int - rows
 - n2 : int - columns
-- B : float[m2][n2]
-- result : float[m1][n1][m2][n2]
+- B : double[m2][n2]
+- result : double[m1][n1][m2][n2]
 
 **Output:** A kronecker B : stored in `result`
 

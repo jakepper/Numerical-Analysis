@@ -1,7 +1,7 @@
 #include <math.h>
 #include "functions.h"
 
-double secant_hybrid(double x0, double x1, double (*f)(double), float tol, int iters, int k) {
+double secant_hybrid(double x0, double x1, double (*f)(double), double tol, int iters, int k) {
     double error = 10 * tol;
     double prev_error = error * 10;
     double x2;

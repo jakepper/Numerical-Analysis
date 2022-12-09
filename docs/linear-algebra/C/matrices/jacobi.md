@@ -13,10 +13,10 @@
 **Inputs:**
 
 - n : int - rows/columns
-- A : float[n][n]
-- x : float[n] - initial approximation
-- y : float[n]
-- D : float[n][n] - to hold D inverse
+- A : double[n][n]
+- x : double[n] - initial approximation
+- y : double[n]
+- D : double[n][n] - to hold D inverse
 - iters : int
 
 **Output:** 

@@ -1,7 +1,7 @@
 #include <math.h>
 #include "functions.h"
 
-double newton_hybrid(double a, double b, double (*f)(double), double (*f_prime)(double), float tol, int iters, int k) {
+double newton_hybrid(double a, double b, double (*f)(double), double (*f_prime)(double), double tol, int iters, int k) {
     double error = 10 * tol;
     double prev_error = error * 10;
     double x0 = (a + b) / 2;

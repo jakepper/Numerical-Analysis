@@ -16,9 +16,9 @@ parallel: power_method_p
 
 - m : int - rows
 - n : int - columns
-- A : float[m][n]
+- A : double[m][n]
 - max_iters : int
-- approx : float[m] - initial eigenvector approximation
+- approx : double[m] - initial eigenvector approximation
 
 **Output:** 
 

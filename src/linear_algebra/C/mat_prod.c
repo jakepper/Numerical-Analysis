@@ -17,22 +17,22 @@
 #define M 1024
 #define N 1024
 
-void print_matrix(int m, int n, float[m][n]);
+void print_matrix(int m, int n, double[m][n]);
 int rand_lim(int limit);
-void gen_matrix(int m, int n, float A[m][n]);
-void arr_alloc (size_t m, size_t n, float(**aptr)[m][n]);
+void gen_matrix(int m, int n, double A[m][n]);
+void arr_alloc (size_t m, size_t n, double(**aptr)[m][n]);
 
 int main(void) {
     printf("   M = %d, N = %d\n\n", M, N);
     double time;
 
-    float (*A)[M][N];
+    double (*A)[M][N];
     arr_alloc(M, N, &A);
-    float (*B)[M][N];
+    double (*B)[M][N];
     arr_alloc(M, N, &B);
     gen_matrix(M, N, *A);
     gen_matrix(M, N, *B);
-    float (*m_result)[M][N];
+    double (*m_result)[M][N];
     arr_alloc(M, N, &m_result);
 
     printf("   Matrix Product (serial)\n");
@@ -54,10 +54,10 @@ int main(void) {
     return 0;
 }
 
-void gen_matrix(int m, int n, float A[m][n]) {
+void gen_matrix(int m, int n, double A[m][n]) {
     for (int i = 0; i < m; i++) {
         for (int j = 0; j < n; j++) {
-            A[i][j] = (float) rand_lim(LIMIT);
+            A[i][j] = (double) rand_lim(LIMIT);
         }
     }
 }
@@ -73,7 +73,7 @@ int rand_lim(int limit) {
     return retval;
 }
 
-void print_matrix(int m, int n, float A[m][n]) {
+void print_matrix(int m, int n, double A[m][n]) {
     for (int i = 0; i < m; i++) {
         for (int j = 0; j < n; j++) {
             printf("%.1f  ", A[i][j]);
@@ -83,8 +83,8 @@ void print_matrix(int m, int n, float A[m][n]) {
     printf("\n");
 }
 
-void arr_alloc (size_t m, size_t n, float(**aptr)[m][n])
+void arr_alloc (size_t m, size_t n, double(**aptr)[m][n])
 {
-  *aptr = malloc(sizeof(float[m][n]) ); // allocate a true 2D array
+  *aptr = malloc(sizeof(double[m][n]) ); // allocate a true 2D array
   assert(*aptr != NULL);
 }

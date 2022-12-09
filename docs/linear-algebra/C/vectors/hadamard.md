@@ -14,10 +14,10 @@ parallel: v_hadamard_p
 
 **Inputs:**
 
-- u : float[]
-- v : float[]
+- u : double[]
+- v : double[]
 - n : int - size
-- result : float[]
+- result : double[]
 
 **Output:** stored in `result`
 

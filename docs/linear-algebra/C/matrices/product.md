@@ -16,9 +16,9 @@ parallel: m_product_p
 
 - m : int - rows
 - n : int - columns
-- A : float[m][n]
-- B : float[m][n]
-- result : float[m][n]
+- A : double[m][n]
+- B : double[m][n]
+- result : double[m][n]
 
 **Output:** A * B : returned in `result`
 

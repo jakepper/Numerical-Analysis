@@ -10,8 +10,8 @@
 
 **Inputs:**
 
-- u : float[]
-- v : float[]
+- u : double[]
+- v : double[]
 - n : int - size
 
 **Output:** u * v : returned

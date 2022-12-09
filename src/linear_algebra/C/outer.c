@@ -17,23 +17,23 @@
 #define M 2048
 #define N 2048
 
-void print_vector(int n, float[]);
-void gen_vector(int n, float v[]);
-void print_matrix(int m, int n, float[m][n]);
-void gen_matrix(int m, int n, float A[m][n]);
+void print_vector(int n, double[]);
+void gen_vector(int n, double v[]);
+void print_matrix(int m, int n, double[m][n]);
+void gen_matrix(int m, int n, double A[m][n]);
 int rand_lim(int limit);
-void arr_alloc (size_t m, size_t n, float(**aptr)[m][n]);
+void arr_alloc (size_t m, size_t n, double(**aptr)[m][n]);
 
 int main(void) {
     printf("   M = %d, N = %d\n\n", M, N);
     double time;
 
-    float u[N];
-    float v[N];
+    double u[N];
+    double v[N];
     gen_vector(N, u);
     gen_vector(N, v);
 
-    float (*m_result)[M][N];
+    double (*m_result)[M][N];
     arr_alloc(M, N, &m_result);
 
     printf("   Vector Outer Product (serial)\n");
@@ -53,20 +53,20 @@ int main(void) {
     return 0;
 }
 
-void print_vector(int n, float v[]) {
+void print_vector(int n, double v[]) {
     for (int i = 0; i < n; i++) {
         printf("%.1f  ", v[i]);
     }
     printf("\n");
 }
 
-void gen_vector(int n, float v[]) {
+void gen_vector(int n, double v[]) {
     for (int i = 0; i < n; i++) {
-        v[i] = (float) rand_lim(LIMIT);
+        v[i] = (double) rand_lim(LIMIT);
     }
 }
 
-void print_matrix(int m, int n, float A[m][n]) {
+void print_matrix(int m, int n, double A[m][n]) {
     for (int i = 0; i < m; i++) {
         for (int j = 0; j < n; j++) {
             printf("%.1f  ", A[i][j]);
@@ -76,10 +76,10 @@ void print_matrix(int m, int n, float A[m][n]) {
     printf("\n");
 }
 
-void gen_matrix(int m, int n, float A[m][n]) {
+void gen_matrix(int m, int n, double A[m][n]) {
     for (int i = 0; i < m; i++) {
         for (int j = 0; j < n; j++) {
-            A[i][j] = (float) rand_lim(LIMIT);
+            A[i][j] = (double) rand_lim(LIMIT);
         }
     }
 }
@@ -95,8 +95,8 @@ int rand_lim(int limit) {
     return retval;
 }
 
-void arr_alloc (size_t m, size_t n, float(**aptr)[m][n])
+void arr_alloc (size_t m, size_t n, double(**aptr)[m][n])
 {
-  *aptr = malloc(sizeof(float[m][n]) ); // allocate a true 2D array
+  *aptr = malloc(sizeof(double[m][n]) ); // allocate a true 2D array
   assert(*aptr != NULL);
 }

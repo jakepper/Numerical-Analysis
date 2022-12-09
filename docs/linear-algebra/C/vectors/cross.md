@@ -12,10 +12,10 @@ Important: Only works for vectors $u,v \epsilon R^3$
 
 **Inputs:**
 
-- u : float[]
-- v : float[]
+- u : double[]
+- v : double[]
 - n : int - size
-- result : float[]
+- result : double[]
 
 **Output:** u x v : stored in `result`
 

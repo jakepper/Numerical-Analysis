@@ -1,7 +1,7 @@
 #include <math.h>
 #include "functions.h"
 
-double iterate(double x0, double (*f)(double x), float tol, int iters) {
+double iterate(double x0, double (*f)(double x), double tol, int iters) {
     double error = 10 * tol;
     int i = 0;
     while (error > tol && i < iters) {

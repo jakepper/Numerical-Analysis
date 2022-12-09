@@ -10,10 +10,10 @@
 
 **Inputs:**
 
-- u : float[]
-- v : float[]
+- u : double[]
+- v : double[]
 - n : int - size
-- result : float[]
+- result : double[]
 
 **Output:** u + v : stored in `result`
 

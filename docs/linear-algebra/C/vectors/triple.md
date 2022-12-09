@@ -12,11 +12,11 @@ Important: Only works for vectors $u,v,w \epsilon R^3$
 
 **Inputs:**
 
-- u : float[]
-- v : float[]
-- w : float[]
+- u : double[]
+- v : double[]
+- w : double[]
 - n : int - size
-- result : float[]
+- result : double[]
 
 **Output:** u x v x w : stored in `result`
 

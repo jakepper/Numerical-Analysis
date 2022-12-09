@@ -1,22 +1,22 @@
-float norm(int, float[]);
+double norm(int, double[]);
 
-void v_add(float[], float[], int, float[]);
+void v_add(double[], double[], int, double[]);
 
-void v_sub(float[], float[], int, float[]);
+void v_sub(double[], double[], int, double[]);
 
-void v_mult_s(float[], float, int, float[]);
-void v_mult_p(float[], float, int, float[]);
+void v_mult_s(double[], double, int, double[]);
+void v_mult_p(double[], double, int, double[]);
 
-float dot(float[], float[], int);
+double dot(double[], double[], int);
 
-void cross(float[], float[], int, float[]);
+void cross(double[], double[], int, double[]);
 
-void triple(float[], float[], float[], int, float[]);
+void triple(double[], double[], double[], int, double[]);
 
-void v_hadamard_s(float[], float[], int, float[]);
+void v_hadamard_s(double[], double[], int, double[]);
 
-void v_hadamard_p(float[], float[], int, float[]);
+void v_hadamard_p(double[], double[], int, double[]);
 
-void v_outer_s(float[], float[], int n, float[n][n]);
+void v_outer_s(double[], double[], int n, double[n][n]);
 
-void v_outer_p(float[], float[], int n, float[n][n]);
+void v_outer_p(double[], double[], int n, double[n][n]);

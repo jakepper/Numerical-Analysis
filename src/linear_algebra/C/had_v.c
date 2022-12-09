@@ -17,19 +17,19 @@
 #define M 2048
 #define N 2048
 
-void print_vector(int n, float[]);
+void print_vector(int n, double[]);
 int rand_lim(int limit);
-void gen_vector(int n, float v[]);
+void gen_vector(int n, double v[]);
 
 int main(void) {
     printf("   M = %d, N = %d\n\n", M, N);
     double time;
 
-    float u[N];
-    float v[N];
+    double u[N];
+    double v[N];
     gen_vector(N, u);
     gen_vector(N, v);
-    float v_result[N];
+    double v_result[N];
 
     printf("   Hadamard Vector Product (serial)\n");
     time = omp_get_wtime();
@@ -46,9 +46,9 @@ int main(void) {
     return 0;
 }
 
-void gen_vector(int n, float v[]) {
+void gen_vector(int n, double v[]) {
     for (int i = 0; i < n; i++) {
-        v[i] = (float) rand_lim(LIMIT);
+        v[i] = (double) rand_lim(LIMIT);
     }
 }
 
@@ -63,7 +63,7 @@ int rand_lim(int limit) {
     return retval;
 }
 
-void print_vector(int n, float v[]) {
+void print_vector(int n, double v[]) {
     for (int i = 0; i < n; i++) {
         printf("%.1f  ", v[i]);
     }

@@ -14,10 +14,10 @@ parallel: v_outer_p
 
 **Inputs:**
 
-- u : float[n]
-- v : float[n]
+- u : double[n]
+- v : double[n]
 - n : int - size
-- result : float[n][n]
+- result : double[n][n]
 
 **Output:** c outer v : stored in `result`
 

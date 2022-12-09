@@ -14,10 +14,10 @@ parallel: v_mult_p
 
 **Inputs:**
 
-- v : float[]
-- c : float
+- v : double[]
+- c : double
 - n : int - size
-- result : float[]
+- result : double[]
 
 **Output:** c * v : stored in `result`
 

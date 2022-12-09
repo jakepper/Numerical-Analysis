@@ -10,7 +10,7 @@
 
 **Inputs:**
 
-- v : float[]
+- v : double[]
 - n : int - size
 
 **Output:** ||v|| : returned
